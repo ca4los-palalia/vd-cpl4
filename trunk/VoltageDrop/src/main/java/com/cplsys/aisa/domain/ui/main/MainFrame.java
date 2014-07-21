@@ -32,7 +32,7 @@ public class MainFrame extends MaiFrameVariables {
 
 	@Override
 	public void createUI() {
-		
+
 	}
 
 }
