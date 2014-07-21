@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public interface DefaultUIStructure extends Serializable {
 
+	public void createUI();
+
 	public void init();
 
 	public void initListeners();
