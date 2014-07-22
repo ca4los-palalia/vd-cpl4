@@ -2,6 +2,7 @@ package com.cplsys.aisa.domain.ui.main.utils;
 
 import java.awt.GridBagConstraints;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -39,5 +40,4 @@ public abstract class MainFrameVariables extends JFrame implements
 
 	protected JMenu about;
 	protected JMenuItem acercaDe;
-
 }
