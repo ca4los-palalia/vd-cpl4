@@ -1,5 +1,6 @@
 package com.cplsys.aisa.domain.ui;
 
+import java.awt.GridBagConstraints;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,9 @@ import com.cplsys.aisa.domain.ui.render.VoltageTableRender;
 public class VoltageDropView extends JPanel {
 
 	private static final long serialVersionUID = 6576152466060289826L;
+	
+	private JButton agregarFIlaButton;
+	private JButton eliminarFIlaButton;
 	private JTable voltageTable;
 	private DefaultTableModel voltageModel;
 
@@ -38,8 +42,7 @@ public class VoltageDropView extends JPanel {
 
 	private void initUI() {
 		this.add(voltageTable);
-		
-		this.add(new JScrollPane(voltageTable2));
+		cargarComponentes();
 	}
 
 	private void initProperties() {
@@ -48,6 +51,8 @@ public class VoltageDropView extends JPanel {
 	}
 
 	private void createObjects() {
+		agregarFIlaButton = new JButton("Nuevo registro");
+		eliminarFIlaButton = new JButton("Eliminar registro");
 		voltageTable = new JTable();
 		voltageModel = (DefaultTableModel) voltageTable.getModel();
 
@@ -172,4 +177,28 @@ public class VoltageDropView extends JPanel {
 		JComboBox comboBox = new JComboBox(bloodGroups);
 		return comboBox;
 	}
+
+	private void cargarComponentes(){
+		GridBagConstraints constraints = new GridBagConstraints();
+		constraints.gridx = 0; // El área de texto empieza en la columna cero.
+		constraints.gridy = 0; // El área de texto empieza en la fila cero
+		constraints.gridwidth = 2; // El área de texto ocupa dos columnas.
+		constraints.gridheight = 2; // El área de texto ocupa 2 filas.
+		this.add(voltageTable2, constraints);
+		
+		constraints.gridx = 2;
+		constraints.gridy = 0;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		
+		this.add(agregarFIlaButton, constraints);
+		
+		constraints.gridx = 1;
+		constraints.gridy = 2;
+		constraints.gridwidth = 1;
+		constraints.gridheight = 1;
+		
+		this.add(eliminarFIlaButton, constraints);
+	}
+
 }
