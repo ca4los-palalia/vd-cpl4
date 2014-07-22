@@ -3,6 +3,7 @@ package com.cplsys.aisa.domain.ui.main;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.swing.JMenu;
@@ -10,14 +11,20 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cplsys.aisa.domain.Modulo;
 import com.cplsys.aisa.domain.ui.main.utils.MainFrameVariables;
+import com.cplsys.aisa.utils.VoltageDropConstants;
 
 @Repository
 public class MainFrame extends MainFrameVariables {
 
 	private static final long serialVersionUID = -6509304242603807376L;
+
+	@Autowired
+	private WorkSpacePanel workSpacePanel;
 
 	@PostConstruct
 	@Override
@@ -87,6 +94,7 @@ public class MainFrame extends MainFrameVariables {
 	@Override
 	public void initProperties() {
 		menuGridBagConstraints.weightx = 1.0;
+
 		MENU_ITEM: {
 			abrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
 					ActionEvent.CTRL_MASK));
@@ -127,7 +135,6 @@ public class MainFrame extends MainFrameVariables {
 			copiar = new JMenuItem("Copiar");
 			cortar = new JMenuItem("Cortar");
 			pegar = new JMenuItem("Pegar");
-			caidaVoltaje = new JMenuItem("Caida de voltaje");
 			acercaDe = new JMenuItem("Acerca de");
 		}
 	}
@@ -156,7 +163,13 @@ public class MainFrame extends MainFrameVariables {
 			}
 
 			MODULOS: {
-				modulos.add(caidaVoltaje);
+				List<Modulo> modulos = loadModules();
+				for (Modulo modulo : modulos) {
+					JMenuItem item = new JMenuItem(modulo.getProductName());
+					item.setIcon(VoltageDropConstants.moduleIcons.get(modulo
+							.getSerial()));
+					this.modulos.add(item);
+				}
 			}
 			ABOUT: {
 				about.add(acercaDe);
@@ -164,6 +177,12 @@ public class MainFrame extends MainFrameVariables {
 		}
 
 		this.setJMenuBar(menuBar);
+		this.getContentPane().add(workSpacePanel);
+
+	}
+
+	private List<Modulo> loadModules() {
+		return servicesLayer.getModuloService().getAll();
 	}
 
 }

@@ -7,12 +7,20 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cplsys.aisa.utils.ServicesLayer;
+
 public abstract class MainFrameVariables extends JFrame implements
 		DefaultUIStructure {
 
 	private static final long serialVersionUID = -7508083727357748068L;
 
+	@Autowired
+	protected ServicesLayer servicesLayer;
+
 	protected GridBagConstraints menuGridBagConstraints = new GridBagConstraints();
+
 	protected JMenuBar menuBar;
 	protected JMenu archivo;
 	protected JMenuItem abrir;
