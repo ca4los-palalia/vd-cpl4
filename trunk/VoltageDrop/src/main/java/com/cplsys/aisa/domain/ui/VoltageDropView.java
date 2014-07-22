@@ -19,7 +19,7 @@ import com.cplsys.aisa.domain.ui.editors.SpinnerEditor;
 import com.cplsys.aisa.domain.ui.model.VoltageTableModel;
 import com.cplsys.aisa.domain.ui.render.VoltageTableRender;
 
-public class TableView extends JPanel {
+public class VoltageDropView extends JPanel {
 
 	private static final long serialVersionUID = 6576152466060289826L;
 	private JTable voltageTable;
@@ -29,7 +29,7 @@ public class TableView extends JPanel {
 	private VoltageTableRender voltageTableRender;
 	private JTable voltageTable2;
 
-	public TableView() {
+	public VoltageDropView() {
 		createObjects();
 		fillModel();
 		initProperties();
