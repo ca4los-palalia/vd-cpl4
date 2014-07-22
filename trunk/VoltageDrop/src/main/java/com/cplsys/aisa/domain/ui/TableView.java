@@ -73,6 +73,6 @@ public class TableView extends JPanel {
 				.getColumn(4)
 				.setCellEditor(
 						new SpinnerEditor(new String[] { "1", "2", "3" }));
-
+		//prueba
 	}
 }
