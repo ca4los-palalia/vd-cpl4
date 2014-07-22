@@ -25,7 +25,7 @@ public class MainFrame extends MainFrameVariables {
 
 	@Autowired
 	private WorkSpacePanel workSpacePanel;
-
+	
 	@PostConstruct
 	@Override
 	public void init() {
@@ -94,7 +94,7 @@ public class MainFrame extends MainFrameVariables {
 	@Override
 	public void initProperties() {
 		menuGridBagConstraints.weightx = 1.0;
-
+		
 		MENU_ITEM: {
 			abrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
 					ActionEvent.CTRL_MASK));
@@ -135,6 +135,7 @@ public class MainFrame extends MainFrameVariables {
 			copiar = new JMenuItem("Copiar");
 			cortar = new JMenuItem("Cortar");
 			pegar = new JMenuItem("Pegar");
+			caidaVoltaje = new JMenuItem("Caida de voltaje");
 			acercaDe = new JMenuItem("Acerca de");
 		}
 	}
@@ -178,9 +179,9 @@ public class MainFrame extends MainFrameVariables {
 
 		this.setJMenuBar(menuBar);
 		this.getContentPane().add(workSpacePanel);
-
+		
 	}
-
+	
 	private List<Modulo> loadModules() {
 		return servicesLayer.getModuloService().getAll();
 	}
