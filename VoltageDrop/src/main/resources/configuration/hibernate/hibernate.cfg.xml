@@ -17,6 +17,7 @@
 		<!-- END Configuration Data -->
 
 		<mapping class="com.cplsys.aisa.domain.Cable" />
+		<mapping class="com.cplsys.aisa.domain.Modulo" />
 		<mapping class="com.cplsys.aisa.domain.Rectancia" />
 		<mapping class="com.cplsys.aisa.domain.Resistencia" />
 		<mapping class="com.cplsys.aisa.domain.TipoMaterialResistencia" />
