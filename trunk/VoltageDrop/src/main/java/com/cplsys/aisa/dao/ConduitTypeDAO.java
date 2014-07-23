@@ -12,6 +12,8 @@ public interface ConduitTypeDAO {
 
 	public List<ConduitType> getAll();
 	
+	public String[] getAllOnlyNombres();
+	
 	public ConduitType getById(Long idConduitType);
 	
 	public ConduitType getByNombre(String nombre);

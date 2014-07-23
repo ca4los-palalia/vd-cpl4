@@ -26,6 +26,10 @@ public class ConductorTypeService {
 		return conductorTypeDAO.getAll();
 	}
 	
+	public String[] getAllOnlyNombres(){
+		return conductorTypeDAO.getAllOnlyNombres();
+	}
+	
 	public ConductorType getById(Long idConductorType){
 		return conductorTypeDAO.getById(idConductorType);
 	}

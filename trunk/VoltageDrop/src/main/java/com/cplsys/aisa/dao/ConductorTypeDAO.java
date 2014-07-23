@@ -12,6 +12,8 @@ public interface ConductorTypeDAO {
 
 	public List<ConductorType> getAll();
 	
+	public String[] getAllOnlyNombres();
+	
 	public ConductorType getById(Long idConductorType);
 	
 	public ConductorType getByNombre(String nombre);

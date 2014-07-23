@@ -12,6 +12,8 @@ public interface CircuitLenghtDAO {
 
 	public List<CircuitLenght> getAll();
 	
+	public String[] getAllOnlyNombres();
+	
 	public CircuitLenght getById(Long idCircuitLenght);
 	
 	public CircuitLenght getByNombre(String nombre);

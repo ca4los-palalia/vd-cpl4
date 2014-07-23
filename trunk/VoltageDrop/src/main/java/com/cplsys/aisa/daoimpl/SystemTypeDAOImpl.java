@@ -58,5 +58,24 @@ public class SystemTypeDAOImpl extends HibernateDAOSuportUtil implements SystemT
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
+	@SuppressWarnings({ "unchecked", "null" })
+	@Transactional(readOnly = true)
+	@Override
+	public String[] getAllOnlyNombres() {
+		String[] items = null;
+		
+		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
+				createCriteria(SystemType.class);
+		List<SystemType> lista = criteria.list();
+		
+		if(lista != null){
+			int i = 0;
+			for (SystemType item : lista) {
+				items [i] = item.getNombre();
+			}
+		}
+		return items != null && items.length > 0 ? items : null;
+	}
+
 	
 }

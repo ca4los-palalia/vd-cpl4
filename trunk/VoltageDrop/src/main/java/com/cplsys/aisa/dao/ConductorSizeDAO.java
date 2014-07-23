@@ -12,6 +12,8 @@ public interface ConductorSizeDAO {
 
 	public List<ConductorSize> getAll();
 	
+	public String[] getAllOnlyNombres();
+	
 	public ConductorSize getById(Long idConductorSize);
 	
 	public ConductorSize getByNombre(String nombre);

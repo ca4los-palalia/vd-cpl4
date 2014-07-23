@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cplsys.aisa.dao.ConductorTypeDAO;
+import com.cplsys.aisa.domain.ConductorSize;
 import com.cplsys.aisa.domain.ConductorType;
 import com.cplsys.aisa.utils.HibernateDAOSuportUtil;
 
@@ -58,5 +59,22 @@ public class ConductorTypeDAOImpl extends HibernateDAOSuportUtil implements Cond
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
-	
+	@SuppressWarnings({ "unchecked", "null" })
+	@Transactional(readOnly = true)
+	@Override
+	public String[] getAllOnlyNombres() {
+		String[] items = null;
+		
+		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
+				createCriteria(ConductorType.class);
+		List<ConductorType> lista = criteria.list();
+		
+		if(lista != null){
+			int i = 0;
+			for (ConductorType item : lista) {
+				items [i] = item.getNombre();
+			}
+		}
+		return items != null && items.length > 0 ? items : null;
+	}
 }

@@ -12,6 +12,8 @@ public interface SystemTypeDAO {
 
 	public List<SystemType> getAll();
 	
+	public String[] getAllOnlyNombres();
+	
 	public SystemType getById(final Long idSystemType);
 	
 	public SystemType getByNombre(final String nombre);
