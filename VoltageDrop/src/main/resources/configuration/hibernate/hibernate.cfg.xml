@@ -17,9 +17,14 @@
 		<!-- END Configuration Data -->
 
 		<mapping class="com.cplsys.aisa.domain.Cable" />
+		<mapping class="com.cplsys.aisa.domain.CircuitLenght" />
+		<mapping class="com.cplsys.aisa.domain.ConductorSize" />
+		<mapping class="com.cplsys.aisa.domain.ConductorType" />
+		<mapping class="com.cplsys.aisa.domain.ConduitType" />
 		<mapping class="com.cplsys.aisa.domain.Modulo" />
 		<mapping class="com.cplsys.aisa.domain.Rectancia" />
 		<mapping class="com.cplsys.aisa.domain.Resistencia" />
+		<mapping class="com.cplsys.aisa.domain.SystemType" />
 		<mapping class="com.cplsys.aisa.domain.TipoMaterialResistencia" />
 		<mapping class="com.cplsys.aisa.domain.TipoTuberiaRectancia" />
 	</session-factory>
