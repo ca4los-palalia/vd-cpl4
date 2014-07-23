@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cplsys.aisa.dao.CircuitLenghtDAO;
 import com.cplsys.aisa.domain.CircuitLenght;
+import com.cplsys.aisa.domain.SystemType;
 import com.cplsys.aisa.utils.HibernateDAOSuportUtil;
 
 @Repository
@@ -58,5 +59,26 @@ public class CircuitLenghtDAOImpl extends HibernateDAOSuportUtil implements Circ
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
+	@SuppressWarnings({ "unchecked", "null" })
+	@Transactional(readOnly = true)
+	@Override
+	public String[] getAllOnlyNombres() {
+		String[] items = null;
+		
+		/*Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
+				createCriteria(CircuitLenght.class);*/
+		
+		
+		
+		List<CircuitLenght> lista = getHibernateTemplate().find("FROM CircuitLenght as c ");
+		
+		if(lista != null){
+			int i = 0;
+			for (CircuitLenght item : lista) {
+				items [i] = item.getNombre();
+			}
+		}
+		return items != null && items.length > 0 ? items : null;
+	}
 	
 }

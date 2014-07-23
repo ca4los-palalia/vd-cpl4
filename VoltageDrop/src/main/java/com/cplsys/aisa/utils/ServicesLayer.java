@@ -3,12 +3,37 @@ package com.cplsys.aisa.utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cplsys.aisa.domain.CircuitLenght;
+import com.cplsys.aisa.domain.ConductorSize;
+import com.cplsys.aisa.domain.ConductorType;
+import com.cplsys.aisa.domain.ConduitType;
+import com.cplsys.aisa.domain.SystemType;
+import com.cplsys.aisa.services.CircuitLenghtService;
+import com.cplsys.aisa.services.ConductorSizeService;
+import com.cplsys.aisa.services.ConductorTypeService;
+import com.cplsys.aisa.services.ConduitTypeService;
 import com.cplsys.aisa.services.ModuloService;
+import com.cplsys.aisa.services.SystemTypeService;
 
 @Service
 public class ServicesLayer {
 	@Autowired
 	private ModuloService moduloService;
+	
+	@Autowired
+	private CircuitLenghtService circuitLenghtService;
+	
+	@Autowired
+	private ConductorSizeService conductorSizeService;
+	
+	@Autowired
+	private ConductorTypeService conductorTypeService;
+	
+	@Autowired
+	private ConduitTypeService conduitTypeService;
+	
+	@Autowired
+	private SystemTypeService systemTypeService;
 
 	public ModuloService getModuloService() {
 		return moduloService;
@@ -18,4 +43,45 @@ public class ServicesLayer {
 		this.moduloService = moduloService;
 	}
 
+	public CircuitLenghtService getCircuitLenghtService() {
+		return circuitLenghtService;
+	}
+
+	public void setCircuitLenghtService(CircuitLenghtService circuitLenghtService) {
+		this.circuitLenghtService = circuitLenghtService;
+	}
+
+	public ConductorSizeService getConductorSizeService() {
+		return conductorSizeService;
+	}
+
+	public void setConductorSizeService(ConductorSizeService conductorSizeService) {
+		this.conductorSizeService = conductorSizeService;
+	}
+
+	public ConductorTypeService getConductorTypeService() {
+		return conductorTypeService;
+	}
+
+	public void setConductorTypeService(ConductorTypeService conductorTypeService) {
+		this.conductorTypeService = conductorTypeService;
+	}
+
+	public ConduitTypeService getConduitTypeService() {
+		return conduitTypeService;
+	}
+
+	public void setConduitTypeService(ConduitTypeService conduitTypeService) {
+		this.conduitTypeService = conduitTypeService;
+	}
+
+	public SystemTypeService getSystemTypeService() {
+		return systemTypeService;
+	}
+
+	public void setSystemTypeService(SystemTypeService systemTypeService) {
+		this.systemTypeService = systemTypeService;
+	}
+	
+	
 }

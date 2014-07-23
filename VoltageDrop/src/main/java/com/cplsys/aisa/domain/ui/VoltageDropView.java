@@ -11,74 +11,26 @@ import javax.annotation.PostConstruct;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
-import org.apache.derby.tools.sysinfo;
 import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.domain.CaidaVoltaje;
+import com.cplsys.aisa.domain.ui.editors.ComboBoxEditor;
 import com.cplsys.aisa.domain.ui.editors.SpinnerEditor;
-import com.cplsys.aisa.domain.ui.main.utils.DefaultUIStructure;
 import com.cplsys.aisa.domain.ui.model.VoltageTableModel;
+import com.cplsys.aisa.domain.ui.render.VoltageComboBoxRender;
+import com.cplsys.aisa.domain.ui.render.VoltageSpinnerRender;
 import com.cplsys.aisa.domain.ui.render.VoltageTableRender;
 
 @Repository
 public class VoltageDropView extends VoltageDropViewVariables {
 
 	private static final long serialVersionUID = 6576152466060289826L;
-
-	private void fillModel() {
-		HEADER: {
-			voltageModel.addColumn("Conduit Type");
-			voltageModel.addColumn("Conductor Type");
-			voltageModel.addColumn("System Type");
-			voltageModel.addColumn("Conductor Size (AWG)");
-			voltageModel.addColumn("Circuit Lenght");
-			voltageModel.addColumn("Current (A)");
-			voltageModel.addColumn("Voltage (V)");
-			voltageModel.addColumn("Power Factor");
-			voltageModel.addColumn("Ze (ohms)");
-			voltageModel.addColumn("Voltage Drop");
-			voltageModel.addColumn("%");
-			voltageModel.addColumn("Fina voltage (V)");
-		}
-
-		ROWS: {
-			voltageModel.addRow(new Object[][] { { null, null, null, null,
-					null, null, null, null, 1, 1, 1, 1 } });
-		}
-
-		voltageTable.setModel(voltageModel);
-
-		voltageTable.getColumnModel().getColumn(0)
-				.setCellEditor(new DefaultCellEditor(new JComboBox()));
-		voltageTable.getColumnModel().getColumn(1)
-				.setCellEditor(new DefaultCellEditor(new JComboBox()));
-		voltageTable.getColumnModel().getColumn(2)
-				.setCellEditor(new DefaultCellEditor(new JComboBox()));
-		voltageTable.getColumnModel().getColumn(3)
-				.setCellEditor(new DefaultCellEditor(new JComboBox()));
-
-		voltageTable.getColumnModel().getColumn(4)
-				.setCellEditor(new DefaultCellEditor(new JCheckBox()));
-
-		voltageTable
-				.getColumnModel()
-				.getColumn(4)
-				.setCellEditor(
-						new SpinnerEditor(new String[] { "1", "2", "3" }));
-
-	}
-
-	
-
-	
 
 	@Override
 	@PostConstruct
@@ -95,6 +47,7 @@ public class VoltageDropView extends VoltageDropViewVariables {
 		eliminarFIlaButton = new JButton("Eliminar registro");
 		voltageTable = new JTable();
 		voltageModel = (DefaultTableModel) voltageTable.getModel();
+		listaTablaVoltage = new ArrayList<CaidaVoltaje>();
 	}
 
 
@@ -119,6 +72,7 @@ public class VoltageDropView extends VoltageDropViewVariables {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.err.println("agregar fila");
+				agregarRowVoltaje();
 			}
 		});
 		
@@ -126,7 +80,8 @@ public class VoltageDropView extends VoltageDropViewVariables {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				if(voltageTable2.getSelectedRow() > -1)
+					voltageTableModel.deleteRow(voltageTable2.getSelectedRow());
 			}
 		});
 
@@ -134,60 +89,75 @@ public class VoltageDropView extends VoltageDropViewVariables {
 
 	private void loadInfoTabla2() {
 
-		List<CaidaVoltaje> lista = new ArrayList<CaidaVoltaje>();
 		CaidaVoltaje info = new CaidaVoltaje();
 
 		info.setCurrentAmper(13F);
 		info.setVoltage(120);
 		info.setPowerFactor(0.9F);
-		lista.add(info);
+		listaTablaVoltage.add(info);
 
 		String[] columnNames = { "Conduit Type", "Conductor Type",
 				"System Type", "Conductor Size (AWG)", "Circuit Lenght",
 				"Current (A)", "Voltage (V)", "Power Factor", "Ze (ohms)",
 				"Voltage Drop Volts", "%", "Final Voltage (V)" };
 
-		voltageTableModel = new VoltageTableModel(lista, columnNames);
+		voltageTableModel = new VoltageTableModel(listaTablaVoltage, columnNames);
 
 		voltageTable2 = new JTable(voltageTableModel);
-
 		voltageTable2.createDefaultColumnsFromModel();
-
 		voltageTable2.getColumnModel().getColumn(0)
 				.setCellEditor(new DefaultCellEditor(getCbConduitType()));
-
 		voltageTable2.getColumnModel().getColumn(1)
 				.setCellEditor(new DefaultCellEditor(getCbConductorType()));
-
 		voltageTable2.getColumnModel().getColumn(2)
 				.setCellEditor(new DefaultCellEditor(getCbSystemType()));
-
 		voltageTable2.getColumnModel().getColumn(3)
 				.setCellEditor(new DefaultCellEditor(getCbConductorSize()));
-
-		voltageTable2
-				.getColumnModel()
-				.getColumn(4)
-				.setCellEditor(
-						new SpinnerEditor(new String[] { "1", "2", "3" }));
-
+		
+		List<Integer> items = new ArrayList<Integer>();
+		items.add(1);
+		items.add(2);
+		items.add(3);
+		items.add(4);
+		
+		TableColumn col = voltageTable2.getColumnModel().getColumn(4);
+		col.setCellRenderer(new VoltageSpinnerRender());
+	    col.setCellEditor(new SpinnerEditor(items));
+	    
 		voltageTable2.getColumnModel().getColumn(5)
 				.setCellEditor(new DefaultCellEditor(getCbCircuitlenght()));
-
 		voltageTable2
 				.setDefaultRenderer(Object.class, new VoltageTableRender());
-
+	    
+	}
+	
+	
+	private void agregarRowVoltaje() {
+		CaidaVoltaje info = new CaidaVoltaje();
+		info.setCurrentAmper(13F);
+		info.setVoltage(120);
+		info.setPowerFactor(0.9F);
+		voltageTableModel.addRow(info);
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private JComboBox getCbConduitType() {
-		String[] bloodGroups = { "PVC", "Steel", "Aluminum" };
-		JComboBox comboBox = new JComboBox(bloodGroups);
+		String[] items = servicesLayer.getCircuitLenghtService().getAllOnlyNombres();
+		JComboBox comboBox = null;
+		if(items != null)
+			comboBox = new JComboBox(items);
+		else
+			comboBox =  new JComboBox();
 		return comboBox;
 	}
 
 	private JComboBox getCbConductorType() {
 		String[] bloodGroups = { "Cu", "Al" };
 		JComboBox comboBox = new JComboBox(bloodGroups);
+		
+		TableColumn col = voltageTable2.getColumnModel().getColumn(1);
+	    col.setCellEditor(new ComboBoxEditor(bloodGroups));
+	    col.setCellRenderer(new VoltageComboBoxRender(bloodGroups));
 		return comboBox;
 	}
 

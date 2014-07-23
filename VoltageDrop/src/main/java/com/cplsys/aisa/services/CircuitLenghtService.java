@@ -26,6 +26,10 @@ public class CircuitLenghtService {
 		return circuitLenghtDAO.getAll();
 	}
 	
+	public String[] getAllOnlyNombres(){
+		return circuitLenghtDAO.getAllOnlyNombres();
+	}
+	
 	public CircuitLenght getById(Long idCircuitLenght){
 		return circuitLenghtDAO.getById(idCircuitLenght);
 	}

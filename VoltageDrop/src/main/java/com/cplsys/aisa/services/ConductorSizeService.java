@@ -26,6 +26,10 @@ public class ConductorSizeService {
 		return conductorSizeDAO.getAll();
 	}
 	
+	public String[] getAllOnlyNombres(){
+		return conductorSizeDAO.getAllOnlyNombres();
+	}
+	
 	public ConductorSize getById(Long idConductorSize){
 		return conductorSizeDAO.getById(idConductorSize);
 	}

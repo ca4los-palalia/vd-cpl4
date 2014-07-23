@@ -26,6 +26,10 @@ public class ConduitTypeService {
 		return conduitTypeDAO.getAll();
 	}
 	
+	public String[] getAllOnlyNombres(){
+		return conduitTypeDAO.getAllOnlyNombres();
+	}
+	
 	public ConduitType getById(Long idConduitType){
 		return conduitTypeDAO.getById(idConduitType);
 	}

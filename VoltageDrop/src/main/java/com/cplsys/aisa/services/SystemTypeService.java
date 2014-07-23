@@ -26,6 +26,10 @@ public class SystemTypeService {
 		return systemTypeDAO.getAll();
 	}
 	
+	public String[] getAllOnlyNombres(){
+		return systemTypeDAO.getAllOnlyNombres();
+	}
+	
 	public SystemType getById(Long idSystemType){
 		return systemTypeDAO.getById(idSystemType);
 	}

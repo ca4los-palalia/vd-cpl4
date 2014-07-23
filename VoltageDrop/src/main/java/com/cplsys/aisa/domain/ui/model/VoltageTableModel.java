@@ -26,12 +26,12 @@ public class VoltageTableModel extends AbstractTableModel {
 	}
 	
 	
-	public void agregarInformacionRow(CaidaVoltaje informacionRow) {
+	public void addRow(CaidaVoltaje informacionRow) {
 		informacionRowList.add(informacionRow);
 		fireTableDataChanged();
 	}
 
-	public void eliminarInformacionRow(int rowIndex) {
+	public void deleteRow(int rowIndex) {
 		informacionRowList.remove(rowIndex);
 		fireTableDataChanged();
 	}
@@ -108,37 +108,46 @@ public class VoltageTableModel extends AbstractTableModel {
 			InformacionRow.setConduitType((ConduitType) value);
 			break;
 		case 1:
-			InformacionRow.setConductorType((ConductorType) value);
+			ConductorType conductorType = new ConductorType();
+			conductorType.setNombre(String.valueOf(value));
+			InformacionRow.setConductorType(conductorType);
 			break;
 		case 2:
-			InformacionRow.setSystemType((SystemType) value);
+			SystemType systemType = new SystemType();
+			systemType.setNombre(String.valueOf(value));
+			InformacionRow.setSystemType(systemType);
 			break;
 		case 3:
-			InformacionRow.setConductorSize((ConductorSize) value);
+			ConductorSize conductorSize = new ConductorSize();
+			conductorSize.setNombre(String.valueOf(value));
+			InformacionRow.setConductorSize(conductorSize);
 			break;
 		case 4:
-			InformacionRow.setCircuitLenght((CircuitLenght) value);
+			CircuitLenght circuitLenght = new CircuitLenght();
+			circuitLenght.setNombre(String.valueOf(value));
+			InformacionRow.setCircuitLenght(circuitLenght);
 			break;
 		case 5:
-			InformacionRow.setCurrentAmper((Float) value);
+			Float valor = 23F;
+			InformacionRow.setCurrentAmper(valor);
 			break;
 		case 6:
-			InformacionRow.setVoltage((Integer) value);
+			InformacionRow.setVoltage(Integer.parseInt(value.toString()));
 			break;
 		case 7:
-			InformacionRow.setPowerFactor((Float) value);
+			InformacionRow.setPowerFactor(Float.parseFloat(value.toString()));
 			break;
 		case 8:
-			InformacionRow.setZe((Float) value);
+			InformacionRow.setZe(Float.parseFloat(value.toString()));
 			break;
 		case 9:
-			InformacionRow.setVoltageDropVolts((Float) value);
+			InformacionRow.setVoltageDropVolts(Float.parseFloat(value.toString()));
 			break;
 		case 10:
-			InformacionRow.setVoltageDropPercentage((Float) value);
+			InformacionRow.setVoltageDropPercentage(Float.parseFloat(value.toString()));
 			break;
 		case 11:
-			InformacionRow.setFinalVoltage((Float) value);
+			InformacionRow.setFinalVoltage(Float.parseFloat(value.toString()));
 		case 12:
 			InformacionRow.setBotonCalcular((String) value);
 			break;
