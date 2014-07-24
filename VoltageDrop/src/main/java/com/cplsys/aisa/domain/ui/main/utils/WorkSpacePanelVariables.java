@@ -1,5 +1,6 @@
 package com.cplsys.aisa.domain.ui.main.utils;
 
+import java.awt.CardLayout;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JPanel;
@@ -10,4 +11,5 @@ public abstract class WorkSpacePanelVariables extends JPanel {
 
 	protected GridBagConstraints globalConstraint = new GridBagConstraints();
 	protected GridBagConstraints gridConstraint = new GridBagConstraints();
+	protected CardLayout cardManager;
 }

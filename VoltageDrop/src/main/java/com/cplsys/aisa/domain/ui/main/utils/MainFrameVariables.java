@@ -2,7 +2,6 @@ package com.cplsys.aisa.domain.ui.main.utils;
 
 import java.awt.GridBagConstraints;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -10,6 +9,7 @@ import javax.swing.JMenuItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.cplsys.aisa.utils.ModuloActionListener;
 import com.cplsys.aisa.utils.ServicesLayer;
 
 public abstract class MainFrameVariables extends JFrame implements
@@ -23,21 +23,46 @@ public abstract class MainFrameVariables extends JFrame implements
 	protected GridBagConstraints menuGridBagConstraints = new GridBagConstraints();
 
 	protected JMenuBar menuBar;
-	protected JMenu archivo;
-	protected JMenuItem abrir;
-	protected JMenuItem guardar;
-	protected JMenuItem guardarTodo;
-	protected JMenuItem imprimir;
-	protected JMenuItem salir;
+	protected JMenu file;
+	protected JMenuItem newFile;
+	protected JMenuItem open;
+	protected JMenuItem openRecent;
+	protected JMenuItem save;
+	protected JMenuItem saveAs;
+	protected JMenuItem exportTo;
+	protected JMenuItem printReport;
+	protected JMenuItem exit;
 
-	protected JMenu edicion;
-	protected JMenuItem copiar;
-	protected JMenuItem cortar;
-	protected JMenuItem pegar;
+	protected JMenu edition;
+	protected JMenuItem copy;
+	protected JMenuItem cut;
+	protected JMenuItem paste;
 
-	protected JMenu modulos;
-	protected JMenuItem caidaVoltaje;
+	protected JMenu dataBase;
+	protected JMenuItem contactors;
+	protected JMenuItem guardaMotores;
+	protected JMenuItem circuitBreaker;
+	protected JMenuItem fuses;
+	protected JMenuItem safetySwitches;
+
+	protected JMenu calculations;
+	protected JMenuItem voltageDrop;
+	protected JMenuItem powerFeeding;
+	protected JMenuItem lenghtAccVoltage;
+	protected JMenuItem wireSize;
+	protected JMenuItem sizingConduit;
+	protected JMenuItem circuitProtections;
+	protected JMenuItem motorSchedule;
+	protected JMenuItem controlPanel;
+	protected JMenuItem loadsSchedule;
+
+	protected JMenu settings;
+	protected JMenuItem language;
 
 	protected JMenu about;
 	protected JMenuItem acercaDe;
+	protected JMenuItem help;
+
+	protected ModuloActionListener moduleActionListener;
+
 }
