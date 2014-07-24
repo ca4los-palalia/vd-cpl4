@@ -14,17 +14,17 @@
 	http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
 	http://www.springframework.org/schema/util 
 	http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-	
+
 	<!-- Configure beans that are created outside spring -->
 	<context:spring-configured />
 	<!-- End configure beans that are created outside spring -->
-	
-	
+
+
 	<!-- Enable spring annotation support -->
 	<context:annotation-config />
 	<context:component-scan base-package="com/cplsys/aisa" />
 	<!-- End enable spring annotation support -->
-	
+
 
 	<!-- Spring ORM with Hibernate -->
 	<bean id="sessionFactory"
@@ -32,14 +32,15 @@
 		<property name="configLocation" value="classpath:hibernate/hibernate.cfg.xml">
 		</property>
 	</bean>
-	
+
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>		
-	
+	</bean>
+
 	<tx:annotation-driven />
 	<!-- End Spring ORM with Hibernate -->
+	<bean id="defaultDBValues" class="com.cplsys.aisa.domain.ui.main.utils.DefaultValues">
+	</bean>
 
-	
 </beans>
