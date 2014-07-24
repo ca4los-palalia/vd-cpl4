@@ -47,4 +47,9 @@ public class StatusBarPanel extends StatusBarPanelVariables implements
 
 	}
 
+	@Override
+	public void print() {
+		
+	}
+
 }

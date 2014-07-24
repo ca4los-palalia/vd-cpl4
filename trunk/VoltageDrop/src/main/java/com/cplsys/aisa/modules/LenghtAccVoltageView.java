@@ -41,4 +41,10 @@ public class LenghtAccVoltageView extends LenghtAccVoltageVariables {
 		return serialVersionUID;
 	}
 
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

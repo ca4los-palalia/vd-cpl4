@@ -38,4 +38,10 @@ public class WireSizeView extends WireSizeVariables {
 		return serialVersionUID;
 	}
 
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

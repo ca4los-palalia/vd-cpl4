@@ -41,4 +41,10 @@ public class CircuitProtectionsView extends CircuitProtectionsVariables {
 		return serialVersionUID;
 	}
 
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

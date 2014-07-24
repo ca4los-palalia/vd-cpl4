@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.domain.Modulo;
 import com.cplsys.aisa.domain.ui.VoltageDropView;
+import com.cplsys.aisa.domain.ui.main.utils.DefaultUIStructure;
 import com.cplsys.aisa.domain.ui.main.utils.MainFrameVariables;
 import com.cplsys.aisa.modules.CircuitProtectionsView;
 import com.cplsys.aisa.modules.ControlPanelView;
@@ -28,6 +29,8 @@ import com.cplsys.aisa.modules.PowerFeedingView;
 import com.cplsys.aisa.modules.SizingConduitView;
 import com.cplsys.aisa.modules.WireSizeView;
 import com.cplsys.aisa.utils.ModuloActionListener;
+import com.cplsys.aisa.utils.VoltageDropConstants;
+import com.cplsys.aisa.utils.VoltageDropSession;
 
 @Repository
 public class MainFrame extends MainFrameVariables {
@@ -54,6 +57,9 @@ public class MainFrame extends MainFrameVariables {
 	private SizingConduitView sizingConduitView;
 	@Autowired
 	public WireSizeView wireSizeView;
+
+	@Autowired
+	private VoltageDropSession voltageDropSession;
 
 	@PostConstruct
 	@Override
@@ -136,7 +142,22 @@ public class MainFrame extends MainFrameVariables {
 			printReport.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					Long numeroSerie = (Long) voltageDropSession
+							.getValueFromSession(VoltageDropSession.CURRENT_MODULE);
+					Class<?> classToLoad = VoltageDropConstants.MODULE_MAP
+							.get(numeroSerie);
 
+					try {
+						Object modulo = Class.forName(classToLoad.getName())
+								.newInstance();
+						if (modulo instanceof DefaultUIStructure) {
+							DefaultUIStructure iFace = (DefaultUIStructure) modulo;
+							iFace.print();
+						}
+
+					} catch (Exception ex) {
+						ex.printStackTrace();
+					}
 				}
 			});
 
@@ -291,6 +312,11 @@ public class MainFrame extends MainFrameVariables {
 		}
 
 		return null;
+	}
+
+	@Override
+	public void print() {
+
 	}
 
 }

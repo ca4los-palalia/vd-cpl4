@@ -41,4 +41,10 @@ public class LoadsScheduleView extends LoadScheduleVariables {
 		return serialVersionUID;
 	}
 
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
