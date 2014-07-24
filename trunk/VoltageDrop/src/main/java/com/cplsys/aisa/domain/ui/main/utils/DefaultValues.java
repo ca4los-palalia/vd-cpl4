@@ -5,12 +5,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.domain.Modulo;
 import com.cplsys.aisa.services.ModuloService;
 
-@Repository
+@Component
 public class DefaultValues {
 	@Autowired
 	private ModuloService moduloService;
