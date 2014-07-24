@@ -14,9 +14,8 @@ public class AISALauncher {
 		String[] contextPaths = new String[] { "spring/applicationContext.xml" };
 		beans = new ClassPathXmlApplicationContext(contextPaths);
 		Runnable application = beans.getBean(AISA.class);
-		try {
+		try {			
 			SwingUtilities.invokeAndWait(application);
-			System.out.println("AISA.run()");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
