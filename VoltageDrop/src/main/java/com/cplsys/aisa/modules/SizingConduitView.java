@@ -41,4 +41,10 @@ public class SizingConduitView extends SizingConduitVariables {
 		return serialVersionUID;
 	}
 
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

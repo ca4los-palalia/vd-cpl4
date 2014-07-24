@@ -41,4 +41,10 @@ public class PowerFeedingView extends PowerFeedingVariables {
 		return serialVersionUID;
 	}
 
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

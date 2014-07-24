@@ -208,4 +208,9 @@ public class VoltageDropView extends VoltageDropViewVariables {
 		return serialVersionUID;
 	}
 
+	@Override
+	public void print() {
+		System.err.println("Impresion");
+	}
+
 }

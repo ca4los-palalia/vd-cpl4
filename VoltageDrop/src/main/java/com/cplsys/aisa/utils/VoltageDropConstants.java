@@ -4,11 +4,11 @@ import java.util.HashMap;
 
 public class VoltageDropConstants {
 
-	public final static HashMap<Long, Class<?>> componentMap = new HashMap<Long, Class<?>>();
+	public final static HashMap<Long, Class<?>> MODULE_MAP = new HashMap<Long, Class<?>>();
 
 	static {
 		try {
-			componentMap.put(
+			MODULE_MAP.put(
 					6576152466060289826L,
 					ClassLoader.getSystemClassLoader().loadClass(
 							"com.cplsys.aisa.domain.ui.VoltageDropView"));

@@ -41,4 +41,10 @@ public class MotorScheduleView extends MotorScheduleVariables {
 		return serialVersionUID;
 	}
 
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
