@@ -1,11 +1,13 @@
 package com.cplsys.aisa.domain.ui.main;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -15,8 +17,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.domain.Modulo;
+import com.cplsys.aisa.domain.ui.VoltageDropView;
 import com.cplsys.aisa.domain.ui.main.utils.MainFrameVariables;
-import com.cplsys.aisa.utils.VoltageDropConstants;
+import com.cplsys.aisa.modules.CircuitProtectionsView;
+import com.cplsys.aisa.modules.ControlPanelView;
+import com.cplsys.aisa.modules.LenghtAccVoltageView;
+import com.cplsys.aisa.modules.LoadsScheduleView;
+import com.cplsys.aisa.modules.MotorScheduleView;
+import com.cplsys.aisa.modules.PowerFeedingView;
+import com.cplsys.aisa.modules.SizingConduitView;
+import com.cplsys.aisa.modules.WireSizeView;
+import com.cplsys.aisa.utils.ModuloActionListener;
 
 @Repository
 public class MainFrame extends MainFrameVariables {
@@ -25,7 +36,25 @@ public class MainFrame extends MainFrameVariables {
 
 	@Autowired
 	private WorkSpacePanel workSpacePanel;
-	
+	@Autowired
+	private VoltageDropView voltageDropView;
+	@Autowired
+	private CircuitProtectionsView circuitProtectionsView;
+	@Autowired
+	private ControlPanelView controlPanelView;
+	@Autowired
+	private LenghtAccVoltageView lenghtAccVoltageView;
+	@Autowired
+	private LoadsScheduleView loadsScheduleView;
+	@Autowired
+	private MotorScheduleView motorScheduleView;
+	@Autowired
+	private PowerFeedingView powerFeedingView;
+	@Autowired
+	private SizingConduitView sizingConduitView;
+	@Autowired
+	public WireSizeView wireSizeView;
+
 	@PostConstruct
 	@Override
 	public void init() {
@@ -36,53 +65,110 @@ public class MainFrame extends MainFrameVariables {
 	}
 
 	@Override
+	public void initObjects() {
+		MENU: {
+			menuBar = new JMenuBar();
+			file = new JMenu("File");
+			edition = new JMenu("Edit");
+			calculations = new JMenu("Calculations");
+			dataBase = new JMenu("Database");
+			settings = new JMenu("Settings");
+			about = new JMenu("About");
+		}
+		MENU_ITEM: {
+			open = new JMenuItem("Open");
+			openRecent = new JMenuItem("Open recent");
+			newFile = new JMenuItem("New");
+			save = new JMenuItem("Save");
+			saveAs = new JMenuItem("Save as");
+			exportTo = new JMenuItem("Export to");
+			printReport = new JMenuItem("Print Report");
+			exit = new JMenuItem("Exit");
+
+			copy = new JMenuItem("Copy");
+			cut = new JMenuItem("Cut");
+			paste = new JMenuItem("Paste");
+
+			contactors = new JMenuItem("Contactors");
+			guardaMotores = new JMenuItem("Guardamotores");
+			circuitBreaker = new JMenuItem("Circuit Breaker");
+			fuses = new JMenuItem("Fuses");
+			safetySwitches = new JMenuItem("Safety Switches");
+
+			powerFeeding = new JMenuItem("Power Feeding");
+			voltageDrop = new JMenuItem("Caida de voltaje");
+			lenghtAccVoltage = new JMenuItem("Lenght Acc. Voltabe");
+			wireSize = new JMenuItem("Wire Size");
+			sizingConduit = new JMenuItem("Sizing conduit");
+			circuitProtections = new JMenuItem("Circuit Protections");
+			motorSchedule = new JMenuItem("Motor Schedule");
+			controlPanel = new JMenuItem("Control Panel");
+			loadsSchedule = new JMenuItem("Loads Schedule");
+
+			language = new JMenuItem("Language");
+
+			acercaDe = new JMenuItem("About...");
+			help = new JMenuItem("Help");
+		}
+	}
+
+	@Override
 	public void initListeners() {
+		moduleActionListener = new ModuloActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				workSpacePanel.updateWorkSpace(moduleActionListener.getModulo()
+						.getSerial());
+
+			}
+		};
+
 		ARCHIVO: {
-			abrir.addActionListener(new ActionListener() {
+			open.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					System.err.println("Abrir");
 				}
 			});
-			guardar.addActionListener(new ActionListener() {
+			save.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("Guardar");
 				}
 			});
-			guardarTodo.addActionListener(new ActionListener() {
+			saveAs.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("Guardar todo");
 				}
 			});
-			imprimir.addActionListener(new ActionListener() {
+			printReport.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
 				}
 			});
 
-			salir.addActionListener(new ActionListener() {
+			exit.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
 				}
 			});
 
-			copiar.addActionListener(new ActionListener() {
+			copy.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
 				}
 			});
-			cortar.addActionListener(new ActionListener() {
+			cut.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
 				}
 			});
-			pegar.addActionListener(new ActionListener() {
+			paste.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 
@@ -94,48 +180,25 @@ public class MainFrame extends MainFrameVariables {
 	@Override
 	public void initProperties() {
 		menuGridBagConstraints.weightx = 1.0;
-		
-		MENU_ITEM: {
-			abrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
-					ActionEvent.CTRL_MASK));
-			guardar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
-					ActionEvent.CTRL_MASK));
-			guardarTodo = new JMenuItem("Guardar Todo");
-			imprimir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,
-					ActionEvent.CTRL_MASK));
-			salir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
-					ActionEvent.CTRL_MASK));
-			copiar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
-					ActionEvent.CTRL_MASK));
-			cortar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
-					ActionEvent.CTRL_MASK));
-			pegar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,
-					ActionEvent.CTRL_MASK));
-			caidaVoltaje.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
-					ActionEvent.ALT_MASK));
-			acercaDe = new JMenuItem("Acerca de");
-		}
-	}
 
-	@Override
-	public void initObjects() {
-		MENU: {
-			menuBar = new JMenuBar();
-			archivo = new JMenu("Archivo");
-			edicion = new JMenu("Edición");
-			modulos = new JMenu("Módulos");
-			about = new JMenu("About");
-		}
 		MENU_ITEM: {
-			abrir = new JMenuItem("Abrir");
-			guardar = new JMenuItem("Guardar");
-			guardarTodo = new JMenuItem("Guardar Todo");
-			imprimir = new JMenuItem("Imprimir");
-			salir = new JMenuItem("Salir");
-			copiar = new JMenuItem("Copiar");
-			cortar = new JMenuItem("Cortar");
-			pegar = new JMenuItem("Pegar");
-			caidaVoltaje = new JMenuItem("Caida de voltaje");
+			open.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
+					ActionEvent.CTRL_MASK));
+			save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
+					ActionEvent.CTRL_MASK));
+			saveAs = new JMenuItem("Guardar Todo");
+			printReport.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,
+					ActionEvent.CTRL_MASK));
+			exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
+					ActionEvent.CTRL_MASK));
+			copy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
+					ActionEvent.CTRL_MASK));
+			cut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
+					ActionEvent.CTRL_MASK));
+			paste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,
+					ActionEvent.CTRL_MASK));
+			voltageDrop.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
+					ActionEvent.ALT_MASK));
 			acercaDe = new JMenuItem("Acerca de");
 		}
 	}
@@ -143,33 +206,46 @@ public class MainFrame extends MainFrameVariables {
 	@Override
 	public void createUI() {
 		TOOL_BAR: {
-			menuBar.add(archivo);
-			menuBar.add(edicion);
-			menuBar.add(modulos);
+			menuBar.add(file);
+			menuBar.add(edition);
+			menuBar.add(calculations);
 			menuBar.add(about);
 		}
 
 		MENU_ITEMS: {
 			ARCHIVO: {
-				archivo.add(abrir);
-				archivo.add(guardar);
-				archivo.add(guardarTodo);
-				archivo.add(imprimir);
-				archivo.add(salir);
+				file.add(newFile);
+				file.add(open);
+				file.add(openRecent);
+				file.add(save);
+				file.add(saveAs);
+				file.add(exportTo);
+				file.add(printReport);
+				file.add(exit);
 			}
 			EDICION: {
-				edicion.add(copiar);
-				edicion.add(cortar);
-				edicion.add(pegar);
+				edition.add(copy);
+				edition.add(cut);
+				edition.add(paste);
 			}
-
-			MODULOS: {
+			DATABASE: {
+				dataBase.add(contactors);
+				dataBase.add(guardaMotores);
+				dataBase.add(circuitBreaker);
+				dataBase.add(fuses);
+				dataBase.add(safetySwitches);
+			}
+			CALCULATIONS: {
 				List<Modulo> modulos = loadModules();
 				for (Modulo modulo : modulos) {
 					JMenuItem item = new JMenuItem(modulo.getProductName());
-					item.setIcon(VoltageDropConstants.moduleIcons.get(modulo
-							.getSerial()));
-					this.modulos.add(item);
+					moduleActionListener.setModulo(modulo);
+					item.addActionListener(moduleActionListener);
+					item.setIcon(new ImageIcon(getClass().getClassLoader()
+							.getResource(modulo.getImageLocation())));
+					this.calculations.add(item);
+					workSpacePanel.add(getModule(modulo.getSerial()),
+							String.valueOf(modulo.getSerial()));
 				}
 			}
 			ABOUT: {
@@ -179,11 +255,44 @@ public class MainFrame extends MainFrameVariables {
 
 		this.setJMenuBar(menuBar);
 		this.getContentPane().add(workSpacePanel);
-		
+
 	}
-	
+
 	private List<Modulo> loadModules() {
 		return servicesLayer.getModuloService().getAll();
+	}
+
+	@SuppressWarnings("static-access")
+	private Component getModule(final Long serial) {
+		if (voltageDropView.getSerialversionuid() == serial) {
+			return voltageDropView;
+		}
+		if (circuitProtectionsView.getSerialversionuid() == serial) {
+			return circuitProtectionsView;
+		}
+		if (controlPanelView.getSerialversionuid() == serial) {
+			return controlPanelView;
+		}
+		if (lenghtAccVoltageView.getSerialversionuid() == serial) {
+			return lenghtAccVoltageView;
+		}
+		if (loadsScheduleView.getSerialversionuid() == serial) {
+			return loadsScheduleView;
+		}
+		if (motorScheduleView.getSerialversionuid() == serial) {
+			return motorScheduleView;
+		}
+		if (powerFeedingView.getSerialversionuid() == serial) {
+			return powerFeedingView;
+		}
+		if (sizingConduitView.getSerialversionuid() == serial) {
+			return sizingConduitView;
+		}
+		if (wireSizeView.getSerialversionuid() == serial) {
+			return wireSizeView;
+		}
+
+		return null;
 	}
 
 }
