@@ -249,6 +249,8 @@ public class MainFrame extends MainFrameVariables {
 			}
 			CALCULATIONS: {
 				List<Modulo> modulos = loadModules();
+				if(modulos == null)
+					return;
 				for (final Modulo modulo : modulos) {
 					JMenuItem item = new JMenuItem(modulo.getProductName());
 					item.addActionListener(new ModuloActionListener() {
@@ -260,8 +262,8 @@ public class MainFrame extends MainFrameVariables {
 					});
 					((ModuloActionListener) item.getActionListeners()[0])
 							.setModulo(modulo);
-					item.setIcon(new ImageIcon(getClass().getClassLoader()
-							.getResource(modulo.getImageLocation())));
+					/*item.setIcon(new ImageIcon(getClass().getClassLoader()
+							.getResource(modulo.getImageLocation())));*/
 					this.calculations.add(item);
 					workSpacePanel.add(getModule(modulo.getSerial()),
 							String.valueOf(modulo.getSerial()));

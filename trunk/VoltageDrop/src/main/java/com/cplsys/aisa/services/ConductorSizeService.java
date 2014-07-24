@@ -14,11 +14,11 @@ public class ConductorSizeService {
 	@Autowired
 	private ConductorSizeDAO conductorSizeDAO;
 
-	void save(ConductorSize conductorSize){
+	public void save(ConductorSize conductorSize){
 		conductorSizeDAO.save(conductorSize);
 	}
 
-	void delete(ConductorSize conductorSize){
+	public void delete(ConductorSize conductorSize){
 		conductorSizeDAO.delete(conductorSize);
 	}
 

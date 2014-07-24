@@ -14,11 +14,11 @@ public class CircuitLenghtService {
 	@Autowired
 	private CircuitLenghtDAO circuitLenghtDAO;
 
-	void save(CircuitLenght circuitLenght){
+	public void save(CircuitLenght circuitLenght){
 		circuitLenghtDAO.save(circuitLenght);
 	}
 
-	void delete(CircuitLenght circuitLenght){
+	public void delete(CircuitLenght circuitLenght){
 		circuitLenghtDAO.delete(circuitLenght);
 	}
 
@@ -37,5 +37,4 @@ public class CircuitLenghtService {
 	public CircuitLenght getByNombre(String nombre){
 		return circuitLenghtDAO.getByNombre(nombre);
 	}
-	
 }

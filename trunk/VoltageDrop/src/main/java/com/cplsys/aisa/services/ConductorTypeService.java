@@ -14,11 +14,11 @@ public class ConductorTypeService {
 	@Autowired
 	private ConductorTypeDAO conductorTypeDAO;
 
-	void save(ConductorType conductorType){
+	public void save(ConductorType conductorType){
 		conductorTypeDAO.save(conductorType);
 	}
 
-	void delete(ConductorType conductorType){
+	public void delete(ConductorType conductorType){
 		conductorTypeDAO.delete(conductorType);
 	}
 
