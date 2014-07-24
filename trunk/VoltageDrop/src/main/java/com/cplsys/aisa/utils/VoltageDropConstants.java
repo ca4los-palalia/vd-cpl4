@@ -2,13 +2,18 @@ package com.cplsys.aisa.utils;
 
 import java.util.HashMap;
 
-import javax.swing.ImageIcon;
-
 public class VoltageDropConstants {
 
-	public final static HashMap<Long, ImageIcon> moduleIcons = new HashMap<Long, ImageIcon>();
+	public final static HashMap<Long, Class<?>> componentMap = new HashMap<Long, Class<?>>();
 
 	static {
-		moduleIcons.put(1L, new ImageIcon(""));
+		try {
+			componentMap.put(
+					6576152466060289826L,
+					ClassLoader.getSystemClassLoader().loadClass(
+							"com.cplsys.aisa.domain.ui.VoltageDropView"));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }
