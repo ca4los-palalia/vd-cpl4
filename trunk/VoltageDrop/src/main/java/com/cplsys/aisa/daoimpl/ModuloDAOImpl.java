@@ -28,7 +28,8 @@ public class ModuloDAOImpl extends HibernateDAOSuportUtil implements ModuloDAO {
 	@Transactional(readOnly = true)
 	@Override
 	public List<Modulo> getAll() {
-		return getHibernateTemplate().find("FROM Modulo as m");
+		List<Modulo> modulos = getHibernateTemplate().find("FROM Modulo as m");
+		return modulos.size() > 0 ? modulos : null;
 	}
 
 }
