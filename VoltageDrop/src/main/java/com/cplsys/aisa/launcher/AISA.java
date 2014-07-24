@@ -5,19 +5,18 @@ import javax.swing.JFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cplsys.aisa.domain.ui.VoltageDropView;
+import com.cplsys.aisa.domain.ui.main.MainFrame;
 
 @Repository
 public class AISA implements Runnable {
 
 	@Autowired
-	private VoltageDropView voltageDropView;
-	
+	private MainFrame frame;
+
 	@Override
 	public void run() {
-		JFrame frame = new JFrame();
-		frame.getContentPane().add(voltageDropView);
 		frame.pack();
+		frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
