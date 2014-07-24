@@ -1,7 +1,7 @@
 package com.cplsys.aisa.domain.ui.main;
 
+import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.GridBagLayout;
 
 import javax.annotation.PostConstruct;
 import javax.swing.BorderFactory;
@@ -31,17 +31,16 @@ public class ModuleContainer extends ModuleContainerVariables {
 
 	@Override
 	public void initListeners() {
-
+		
 	}
 
 	@Override
 	public void initProperties() {
-
+		setLayout(new CardLayout());
 	}
 
 	@Override
 	public void initObjects() {
-		this.setLayout(new GridBagLayout());
 	}
 
 }
