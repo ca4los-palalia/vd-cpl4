@@ -22,6 +22,7 @@ public class Modulo implements Serializable {
 	private Long serial;
 	private Date validUntil;
 	private String productName;
+	private String imageLocation;
 
 	@Id
 	@Column
@@ -60,6 +61,15 @@ public class Modulo implements Serializable {
 
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+
+	@Column
+	public String getImageLocation() {
+		return imageLocation;
+	}
+
+	public void setImageLocation(String imageLocation) {
+		this.imageLocation = imageLocation;
 	}
 
 }
