@@ -9,7 +9,6 @@ import javax.swing.JMenuItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cplsys.aisa.utils.ModuloActionListener;
 import com.cplsys.aisa.utils.ServicesLayer;
 
 public abstract class MainFrameVariables extends JFrame implements
@@ -62,7 +61,5 @@ public abstract class MainFrameVariables extends JFrame implements
 	protected JMenu about;
 	protected JMenuItem acercaDe;
 	protected JMenuItem help;
-
-	protected ModuloActionListener moduleActionListener;
 
 }
