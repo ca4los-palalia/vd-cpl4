@@ -6,19 +6,42 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
+import com.cplsys.aisa.domain.CircuitLenght;
 import com.cplsys.aisa.domain.Modulo;
+import com.cplsys.aisa.services.CircuitLenghtService;
+import com.cplsys.aisa.services.ConductorSizeService;
+import com.cplsys.aisa.services.ConductorTypeService;
+import com.cplsys.aisa.services.ConduitTypeService;
 import com.cplsys.aisa.services.ModuloService;
+import com.cplsys.aisa.services.SystemTypeService;
+import com.cplsys.aisa.utils.ServicesLayer;
 
 @Component
 public class DefaultValues {
 	@Autowired
 	private ModuloService moduloService;
 
+	@Autowired
+	private CircuitLenghtService circuitLenghtService;
+	
+	@Autowired
+	private ConductorSizeService conductorSizeService;
+	
+	@Autowired
+	private ConductorTypeService conductorTypeService;
+	
+	@Autowired
+	private ConduitTypeService conduitTypeService;
+	
+	@Autowired
+	private SystemTypeService systemTypeService;
+	
 	@PostConstruct
 	public void init() {
 		populateModules();
+		insercionesParaCatalogosDropVoltage();
+		
 	}
 
 	private void populateModules() {
@@ -77,5 +100,21 @@ public class DefaultValues {
 			moduloService.save(modulo);
 
 		}
+	}
+	
+	private void insercionesParaCatalogosDropVoltage(){
+		List<CircuitLenght> lista = circuitLenghtService.getAll();
+		if(lista == null){
+			CircuitLenght circuitLenght = new CircuitLenght();
+			circuitLenght.setNombre("Feet");
+			circuitLenghtService.save(circuitLenght);
+			
+			circuitLenght = new CircuitLenght();
+			circuitLenght.setNombre("Meters");
+		}
+		/*servicesLayer.getConductorSizeService().getAll();
+		servicesLayer.getConductorTypeService().getAll();
+		servicesLayer.getConduitTypeService().getAll();
+		servicesLayer.getSystemTypeService().getAll();*/
 	}
 }

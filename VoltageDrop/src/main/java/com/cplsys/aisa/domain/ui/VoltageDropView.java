@@ -1,7 +1,9 @@
 package com.cplsys.aisa.domain.ui;
 
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -182,26 +184,29 @@ public class VoltageDropView extends VoltageDropViewVariables {
 	}
 
 	private void cargarComponentes() {
+		
+		Panel panelBotones = new Panel(new FlowLayout());
+		panelBotones.add(agregarFIlaButton);
+		panelBotones.add(eliminarFIlaButton);
+		
+		Panel panelTabla = new Panel();
+		panelTabla.add(voltageTable2);
+		
 		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.gridx = 0; // El área de texto empieza en la columna cero.
-		constraints.gridy = 0; // El área de texto empieza en la fila cero
-		constraints.gridwidth = 2; // El área de texto ocupa dos columnas.
-		constraints.gridheight = 2; // El área de texto ocupa 2 filas.
-		this.add(voltageTable2, constraints);
 
-		constraints.gridx = 2;
+		constraints.gridx = 0;
 		constraints.gridy = 0;
-		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
-
-		this.add(agregarFIlaButton, constraints);
-
+		constraints.gridwidth = 2;
+		constraints.gridheight = 2;
+		this.add(panelBotones, constraints);
+		
 		constraints.gridx = 1;
 		constraints.gridy = 2;
-		constraints.gridwidth = 1;
-		constraints.gridheight = 1;
-
-		this.add(eliminarFIlaButton, constraints);
+		constraints.gridwidth = 2;
+		constraints.gridheight = 2;
+		
+		this.add(panelTabla, constraints);
+		
 	}
 
 	public static long getSerialversionuid() {
