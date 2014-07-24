@@ -1,10 +1,9 @@
 package com.cplsys.aisa.domain.ui.main.utils;
 
+import java.awt.Component;
 import java.io.Serializable;
 
 public interface DefaultUIStructure extends Serializable {
-
-	public void createUI();
 
 	public void init();
 
@@ -13,5 +12,7 @@ public interface DefaultUIStructure extends Serializable {
 	public void initProperties();
 
 	public void initObjects();
+
+	public void createUI();
 
 }
