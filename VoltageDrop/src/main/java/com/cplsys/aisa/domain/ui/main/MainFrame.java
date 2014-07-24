@@ -114,15 +114,6 @@ public class MainFrame extends MainFrameVariables {
 
 	@Override
 	public void initListeners() {
-		moduleActionListener = new ModuloActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				workSpacePanel.updateWorkSpace(moduleActionListener.getModulo()
-						.getSerial());
-
-			}
-		};
-
 		ARCHIVO: {
 			open.addActionListener(new ActionListener() {
 				@Override
@@ -237,10 +228,17 @@ public class MainFrame extends MainFrameVariables {
 			}
 			CALCULATIONS: {
 				List<Modulo> modulos = loadModules();
-				for (Modulo modulo : modulos) {
+				for (final Modulo modulo : modulos) {
 					JMenuItem item = new JMenuItem(modulo.getProductName());
-					moduleActionListener.setModulo(modulo);
-					item.addActionListener(moduleActionListener);
+					item.addActionListener(new ModuloActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							workSpacePanel.updateWorkSpace(getModulo()
+									.getSerial());
+						}
+					});
+					((ModuloActionListener) item.getActionListeners()[0])
+							.setModulo(modulo);
 					item.setIcon(new ImageIcon(getClass().getClassLoader()
 							.getResource(modulo.getImageLocation())));
 					this.calculations.add(item);
