@@ -65,4 +65,35 @@ public class WorkSpacePanel extends WorkSpacePanelVariables implements
 		
 	}
 
+	@Override
+	public void nuevo() {
+		
+	}
+
+	@Override
+	public void abrir() {
+		
+	}
+
+	@Override
+	public void abrirReciente() {
+		
+	}
+
+	@Override
+	public void guardar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exportar() {
+		
+	}
+
+	@Override
+	public void salir() {
+		
+	}
+
 }

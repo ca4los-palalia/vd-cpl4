@@ -42,9 +42,40 @@ public class LenghtAccVoltageView extends LenghtAccVoltageVariables {
 	}
 
 	@Override
-	public void print() {
-		// TODO Auto-generated method stub
+	public void nuevo() {
 		
 	}
+
+	@Override
+	public void abrir() {
+		
+	}
+
+	@Override
+	public void abrirReciente() {
+		
+	}
+
+	@Override
+	public void guardar() {
+		
+	}
+
+	@Override
+	public void exportar() {
+		
+	}
+
+	@Override
+	public void print() {
+		
+	}
+
+	@Override
+	public void salir() {
+		
+	}
+
+	
 
 }

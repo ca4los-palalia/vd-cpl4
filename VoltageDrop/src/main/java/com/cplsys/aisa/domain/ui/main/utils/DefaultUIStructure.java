@@ -14,6 +14,20 @@ public interface DefaultUIStructure extends Serializable {
 
 	public void createUI();
 
+	public void nuevo();
+	
+	public void abrir();
+	
+	public void abrirReciente();
+	
+	public void guardar();
+	
+	public void exportar();
+	
 	public void print();
+	
+	public void salir();
+	
+	
 
 }
