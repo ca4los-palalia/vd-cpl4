@@ -52,4 +52,34 @@ public class StatusBarPanel extends StatusBarPanelVariables implements
 		
 	}
 
+	@Override
+	public void nuevo() {
+		
+	}
+
+	@Override
+	public void abrir() {
+		
+	}
+
+	@Override
+	public void abrirReciente() {
+		
+	}
+
+	@Override
+	public void guardar() {
+		
+	}
+
+	@Override
+	public void exportar() {
+		
+	}
+
+	@Override
+	public void salir() {
+		
+	}
+
 }

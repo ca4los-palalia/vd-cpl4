@@ -63,16 +63,16 @@ public class CircuitLenghtDAOImpl extends HibernateDAOSuportUtil implements Circ
 	@Transactional(readOnly = true)
 	@Override
 	public String[] getAllOnlyNombres() {
-		String[] items = null;
 		
+		String[] items = null;
 		/*Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(CircuitLenght.class);*/
 		
 		
 		
 		List<CircuitLenght> lista = getHibernateTemplate().find("FROM CircuitLenght as c ");
-		
 		if(lista != null){
+			items = new String[lista.size()];
 			int i = 0;
 			for (CircuitLenght item : lista) {
 				items [i] = item.getNombre();

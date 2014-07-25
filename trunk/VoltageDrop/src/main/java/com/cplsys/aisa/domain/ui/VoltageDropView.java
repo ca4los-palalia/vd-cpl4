@@ -215,7 +215,37 @@ public class VoltageDropView extends VoltageDropViewVariables {
 
 	@Override
 	public void print() {
-		System.err.println("Impresion");
+		System.err.println("Impresion desde VoltageDropView");
+	}
+
+	@Override
+	public void nuevo() {
+		System.err.println("Nuevo documento desde VoltageDropView");
+	}
+
+	@Override
+	public void abrir() {
+		System.err.println("Abrir documento desde VoltageDropView");
+	}
+
+	@Override
+	public void abrirReciente() {
+		System.err.println("Abrir documento reciente desde VoltageDropView");
+	}
+
+	@Override
+	public void guardar() {
+		System.err.println("Guardar documento desde VoltageDropView");
+	}
+
+	@Override
+	public void exportar() {
+		System.err.println("Exportar PDF desde VoltageDropView");
+	}
+
+	@Override
+	public void salir() {
+		System.err.println("Salir del sistema desde VoltageDropView");
 	}
 
 }

@@ -121,16 +121,28 @@ public class MainFrame extends MainFrameVariables {
 	@Override
 	public void initListeners() {
 		ARCHIVO: {
+			newFile.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					DefaultUIStructure iFace = getPanelEnEjecucion();
+					if (iFace != null)
+						iFace.nuevo();
+				}
+			});
 			open.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					System.err.println("Abrir");
+					DefaultUIStructure iFace = getPanelEnEjecucion();
+					if (iFace != null)
+						iFace.abrir();
 				}
 			});
 			save.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Guardar");
+					DefaultUIStructure iFace = getPanelEnEjecucion();
+					if (iFace != null)
+						iFace.guardar();
 				}
 			});
 			saveAs.addActionListener(new ActionListener() {
@@ -139,32 +151,31 @@ public class MainFrame extends MainFrameVariables {
 					System.out.println("Guardar todo");
 				}
 			});
+			
+			exportTo.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					DefaultUIStructure iFace = getPanelEnEjecucion();
+					if (iFace != null)
+						iFace.exportar();
+				}
+			});
+			
 			printReport.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Long numeroSerie = (Long) voltageDropSession
-							.getValueFromSession(VoltageDropSession.CURRENT_MODULE);
-					Class<?> classToLoad = VoltageDropConstants.MODULE_MAP
-							.get(numeroSerie);
-
-					try {
-						Object modulo = Class.forName(classToLoad.getName())
-								.newInstance();
-						if (modulo instanceof DefaultUIStructure) {
-							DefaultUIStructure iFace = (DefaultUIStructure) modulo;
-							iFace.print();
-						}
-
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
+					DefaultUIStructure iFace = getPanelEnEjecucion();
+					if (iFace != null)
+						iFace.print();
 				}
 			});
 
 			exit.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-
+					DefaultUIStructure iFace = getPanelEnEjecucion();
+					if (iFace != null)
+						iFace.salir();
 				}
 			});
 
@@ -249,7 +260,7 @@ public class MainFrame extends MainFrameVariables {
 			}
 			CALCULATIONS: {
 				List<Modulo> modulos = loadModules();
-				if(modulos == null)
+				if (modulos == null)
 					return;
 				for (final Modulo modulo : modulos) {
 					JMenuItem item = new JMenuItem(modulo.getProductName());
@@ -262,8 +273,10 @@ public class MainFrame extends MainFrameVariables {
 					});
 					((ModuloActionListener) item.getActionListeners()[0])
 							.setModulo(modulo);
-					/*item.setIcon(new ImageIcon(getClass().getClassLoader()
-							.getResource(modulo.getImageLocation())));*/
+					/*
+					 * item.setIcon(new ImageIcon(getClass().getClassLoader()
+					 * .getResource(modulo.getImageLocation())));
+					 */
 					this.calculations.add(item);
 					workSpacePanel.add(getModule(modulo.getSerial()),
 							String.valueOf(modulo.getSerial()));
@@ -321,4 +334,48 @@ public class MainFrame extends MainFrameVariables {
 
 	}
 
+	@Override
+	public void nuevo() {
+
+	}
+
+	@Override
+	public void abrir() {
+
+	}
+
+	@Override
+	public void abrirReciente() {
+
+	}
+
+	@Override
+	public void guardar() {
+
+	}
+
+	@Override
+	public void exportar() {
+
+	}
+
+	@Override
+	public void salir() {
+
+	}
+
+	private DefaultUIStructure getPanelEnEjecucion() {
+		DefaultUIStructure iFace = null;
+		Long numeroSerie = (Long) voltageDropSession
+				.getValueFromSession(VoltageDropSession.CURRENT_MODULE);
+		Class<?> classToLoad = VoltageDropConstants.MODULE_MAP.get(numeroSerie);
+		try {
+			Object modulo = Class.forName(classToLoad.getName()).newInstance();
+			if (modulo instanceof DefaultUIStructure)
+				iFace = (DefaultUIStructure) modulo;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return iFace;
+	}
 }

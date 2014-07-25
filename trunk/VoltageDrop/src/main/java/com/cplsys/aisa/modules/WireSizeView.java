@@ -39,8 +39,37 @@ public class WireSizeView extends WireSizeVariables {
 	}
 
 	@Override
+	public void nuevo() {
+		
+	}
+
+	@Override
+	public void abrir() {
+		
+	}
+
+	@Override
+	public void abrirReciente() {
+		
+	}
+
+	@Override
+	public void guardar() {
+		
+	}
+
+	@Override
+	public void exportar() {
+		
+	}
+
+	@Override
 	public void print() {
-		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void salir() {
 		
 	}
 
