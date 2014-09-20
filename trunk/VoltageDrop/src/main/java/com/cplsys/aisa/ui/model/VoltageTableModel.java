@@ -1,4 +1,4 @@
-package com.cplsys.aisa.domain.ui.model;
+package com.cplsys.aisa.ui.model;
 
 import java.util.List;
 

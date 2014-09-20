@@ -1,4 +1,4 @@
-package com.cplsys.aisa.domain.ui.editors;
+package com.cplsys.aisa.ui.editors;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;

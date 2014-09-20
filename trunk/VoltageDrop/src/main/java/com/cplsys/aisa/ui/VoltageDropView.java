@@ -1,4 +1,4 @@
-package com.cplsys.aisa.domain.ui;
+package com.cplsys.aisa.ui;
 
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -22,12 +22,12 @@ import javax.swing.table.TableColumn;
 import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.domain.CaidaVoltaje;
-import com.cplsys.aisa.domain.ui.editors.ComboBoxEditor;
-import com.cplsys.aisa.domain.ui.editors.SpinnerEditor;
-import com.cplsys.aisa.domain.ui.model.VoltageTableModel;
-import com.cplsys.aisa.domain.ui.render.VoltageComboBoxRender;
-import com.cplsys.aisa.domain.ui.render.VoltageSpinnerRender;
-import com.cplsys.aisa.domain.ui.render.VoltageTableRender;
+import com.cplsys.aisa.ui.editors.ComboBoxEditor;
+import com.cplsys.aisa.ui.editors.SpinnerEditor;
+import com.cplsys.aisa.ui.model.VoltageTableModel;
+import com.cplsys.aisa.ui.render.VoltageComboBoxRender;
+import com.cplsys.aisa.ui.render.VoltageSpinnerRender;
+import com.cplsys.aisa.ui.render.VoltageTableRender;
 
 @Repository
 public class VoltageDropView extends VoltageDropViewVariables {
@@ -204,7 +204,6 @@ public class VoltageDropView extends VoltageDropViewVariables {
 		constraints.gridy = 2;
 		constraints.gridwidth = 2;
 		constraints.gridheight = 2;
-		
 		this.add(panelTabla, constraints);
 		
 	}

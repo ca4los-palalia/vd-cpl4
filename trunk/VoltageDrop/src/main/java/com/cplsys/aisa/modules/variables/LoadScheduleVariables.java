@@ -2,7 +2,7 @@ package com.cplsys.aisa.modules.variables;
 
 import javax.swing.JPanel;
 
-import com.cplsys.aisa.domain.ui.main.utils.DefaultUIStructure;
+import com.cplsys.aisa.ui.main.utils.DefaultUIStructure;
 
 public abstract class LoadScheduleVariables extends JPanel implements
 		DefaultUIStructure {

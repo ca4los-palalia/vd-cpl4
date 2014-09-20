@@ -40,7 +40,7 @@
 
 	<tx:annotation-driven />
 	<!-- End Spring ORM with Hibernate -->
-	<bean id="defaultDBValues" class="com.cplsys.aisa.domain.ui.main.utils.DefaultValues">
+	<bean id="defaultDBValues" class="com.cplsys.aisa.ui.main.utils.DefaultValues">
 	</bean>
 
 </beans>

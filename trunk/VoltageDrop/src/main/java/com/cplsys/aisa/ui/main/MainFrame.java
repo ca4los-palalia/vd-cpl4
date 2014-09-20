@@ -1,4 +1,4 @@
-package com.cplsys.aisa.domain.ui.main;
+package com.cplsys.aisa.ui.main;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -17,9 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.domain.Modulo;
-import com.cplsys.aisa.domain.ui.VoltageDropView;
-import com.cplsys.aisa.domain.ui.main.utils.DefaultUIStructure;
-import com.cplsys.aisa.domain.ui.main.utils.MainFrameVariables;
 import com.cplsys.aisa.modules.CircuitProtectionsView;
 import com.cplsys.aisa.modules.ControlPanelView;
 import com.cplsys.aisa.modules.LenghtAccVoltageView;
@@ -28,6 +24,9 @@ import com.cplsys.aisa.modules.MotorScheduleView;
 import com.cplsys.aisa.modules.PowerFeedingView;
 import com.cplsys.aisa.modules.SizingConduitView;
 import com.cplsys.aisa.modules.WireSizeView;
+import com.cplsys.aisa.ui.VoltageDropView;
+import com.cplsys.aisa.ui.main.utils.DefaultUIStructure;
+import com.cplsys.aisa.ui.main.utils.MainFrameVariables;
 import com.cplsys.aisa.utils.ModuloActionListener;
 import com.cplsys.aisa.utils.VoltageDropConstants;
 import com.cplsys.aisa.utils.VoltageDropSession;
@@ -103,7 +102,7 @@ public class MainFrame extends MainFrameVariables {
 
 			powerFeeding = new JMenuItem("Power Feeding");
 			voltageDrop = new JMenuItem("Caida de voltaje");
-			lenghtAccVoltage = new JMenuItem("Lenght Acc. Voltabe");
+			lenghtAccVoltage = new JMenuItem("Lenght Acc. Voltaje");
 			wireSize = new JMenuItem("Wire Size");
 			sizingConduit = new JMenuItem("Sizing conduit");
 			circuitProtections = new JMenuItem("Circuit Protections");

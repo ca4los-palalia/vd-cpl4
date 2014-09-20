@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cplsys.aisa.domain.ui.main.MainFrame;
+import com.cplsys.aisa.ui.main.MainFrame;
 
 @Repository
 public class AISA implements Runnable {

@@ -1,4 +1,4 @@
-package com.cplsys.aisa.domain.ui.main;
+package com.cplsys.aisa.ui.main;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -8,8 +8,8 @@ import javax.swing.BorderFactory;
 
 import org.springframework.stereotype.Repository;
 
-import com.cplsys.aisa.domain.ui.main.utils.DefaultUIStructure;
-import com.cplsys.aisa.domain.ui.main.utils.StatusBarPanelVariables;
+import com.cplsys.aisa.ui.main.utils.DefaultUIStructure;
+import com.cplsys.aisa.ui.main.utils.StatusBarPanelVariables;
 
 @Repository
 public class StatusBarPanel extends StatusBarPanelVariables implements
