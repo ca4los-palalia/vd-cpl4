@@ -1,4 +1,4 @@
-package com.cplsys.aisa.domain.ui.main;
+package com.cplsys.aisa.ui.main;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -9,8 +9,8 @@ import javax.swing.BorderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cplsys.aisa.domain.ui.main.utils.DefaultUIStructure;
-import com.cplsys.aisa.domain.ui.main.utils.WorkSpacePanelVariables;
+import com.cplsys.aisa.ui.main.utils.DefaultUIStructure;
+import com.cplsys.aisa.ui.main.utils.WorkSpacePanelVariables;
 import com.cplsys.aisa.utils.VoltageDropSession;
 
 /** Panel principal del área de trabajo */

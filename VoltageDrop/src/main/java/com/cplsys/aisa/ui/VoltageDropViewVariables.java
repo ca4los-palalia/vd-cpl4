@@ -1,4 +1,4 @@
-package com.cplsys.aisa.domain.ui;
+package com.cplsys.aisa.ui;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import com.cplsys.aisa.domain.ConductorSize;
 import com.cplsys.aisa.domain.ConductorType;
 import com.cplsys.aisa.domain.ConduitType;
 import com.cplsys.aisa.domain.SystemType;
-import com.cplsys.aisa.domain.ui.main.utils.DefaultUIStructure;
-import com.cplsys.aisa.domain.ui.model.VoltageTableModel;
-import com.cplsys.aisa.domain.ui.render.VoltageTableRender;
+import com.cplsys.aisa.ui.main.utils.DefaultUIStructure;
+import com.cplsys.aisa.ui.model.VoltageTableModel;
+import com.cplsys.aisa.ui.render.VoltageTableRender;
 import com.cplsys.aisa.utils.ServicesLayer;
 
 public abstract class VoltageDropViewVariables extends JPanel implements DefaultUIStructure {

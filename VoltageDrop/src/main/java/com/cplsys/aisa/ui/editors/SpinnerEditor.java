@@ -1,4 +1,4 @@
-package com.cplsys.aisa.domain.ui.editors;
+package com.cplsys.aisa.ui.editors;
 
 import java.awt.Component;
 import java.awt.event.MouseEvent;

@@ -1,4 +1,4 @@
-package com.cplsys.aisa.domain.ui.render;
+package com.cplsys.aisa.ui.render;
 
 import java.awt.Component;
 
