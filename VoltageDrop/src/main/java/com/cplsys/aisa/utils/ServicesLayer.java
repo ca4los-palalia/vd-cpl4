@@ -3,15 +3,11 @@ package com.cplsys.aisa.utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cplsys.aisa.domain.CircuitLenght;
-import com.cplsys.aisa.domain.ConductorSize;
-import com.cplsys.aisa.domain.ConductorType;
-import com.cplsys.aisa.domain.ConduitType;
-import com.cplsys.aisa.domain.SystemType;
 import com.cplsys.aisa.services.CircuitLenghtService;
 import com.cplsys.aisa.services.ConductorSizeService;
 import com.cplsys.aisa.services.ConductorTypeService;
 import com.cplsys.aisa.services.ConduitTypeService;
+import com.cplsys.aisa.services.InformacionParaCalculoService;
 import com.cplsys.aisa.services.ModuloService;
 import com.cplsys.aisa.services.SystemTypeService;
 
@@ -34,6 +30,9 @@ public class ServicesLayer {
 	
 	@Autowired
 	private SystemTypeService systemTypeService;
+	
+	@Autowired
+	private InformacionParaCalculoService informacionParaCalculoService;
 
 	public ModuloService getModuloService() {
 		return moduloService;
@@ -81,6 +80,15 @@ public class ServicesLayer {
 
 	public void setSystemTypeService(SystemTypeService systemTypeService) {
 		this.systemTypeService = systemTypeService;
+	}
+
+	public InformacionParaCalculoService getInformacionParaCalculoService() {
+		return informacionParaCalculoService;
+	}
+
+	public void setInformacionParaCalculoService(
+			InformacionParaCalculoService informacionParaCalculoService) {
+		this.informacionParaCalculoService = informacionParaCalculoService;
 	}
 	
 	
