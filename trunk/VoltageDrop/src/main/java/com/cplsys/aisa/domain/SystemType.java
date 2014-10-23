@@ -17,6 +17,7 @@ public class SystemType implements Serializable {
 
 	private Long idSystemType;
 	private String nombre;
+	private Integer valor;
 	
 	@Id
 	@Column
@@ -24,18 +25,22 @@ public class SystemType implements Serializable {
 	public Long getIdSystemType() {
 		return idSystemType;
 	}
-	
 	public void setIdSystemType(Long idSystemType) {
 		this.idSystemType = idSystemType;
 	}
-	
 	@Column
 	public String getNombre() {
 		return nombre;
 	}
-	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	@Column
+	public Integer getValor() {
+		return valor;
+	}
+	public void setValor(Integer valor) {
+		this.valor = valor;
 	}
 	
 	

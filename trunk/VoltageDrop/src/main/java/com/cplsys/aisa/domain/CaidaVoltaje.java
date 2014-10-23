@@ -11,6 +11,7 @@ public class CaidaVoltaje implements Serializable{
 	private SystemType systemType;
 	private ConductorSize conductorSize;
 	private Integer spinner1;
+	private Float circuitLenghtEntrada;
 	private CircuitLenght circuitLenght;
 	private Float currentAmper;
 	private Integer voltage;
@@ -104,6 +105,12 @@ public class CaidaVoltaje implements Serializable{
 	}
 	public void setBotonCalcular(String botonCalcular) {
 		this.botonCalcular = botonCalcular;
+	}
+	public Float getCircuitLenghtEntrada() {
+		return circuitLenghtEntrada;
+	}
+	public void setCircuitLenghtEntrada(Float circuitLenghtEntrada) {
+		this.circuitLenghtEntrada = circuitLenghtEntrada;
 	}
 	
 	
