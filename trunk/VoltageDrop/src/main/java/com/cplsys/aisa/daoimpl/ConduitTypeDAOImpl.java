@@ -43,8 +43,8 @@ public class ConduitTypeDAOImpl extends HibernateDAOSuportUtil implements Condui
 	public ConduitType getById(Long idConduitType) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(ConduitType.class);
-		List<ConduitType> lista = criteria.list();
 		criteria.add(Restrictions.eq("idConduitType", idConduitType));
+		List<ConduitType> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
@@ -54,8 +54,8 @@ public class ConduitTypeDAOImpl extends HibernateDAOSuportUtil implements Condui
 	public ConduitType getByNombre(String nombre) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(ConduitType.class);
-		List<ConduitType> lista = criteria.list();
 		criteria.add(Restrictions.eq("nombre", nombre));
+		List<ConduitType> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 

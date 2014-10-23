@@ -43,8 +43,8 @@ public class CircuitLenghtDAOImpl extends HibernateDAOSuportUtil implements Circ
 	public CircuitLenght getById(Long idCircuitLenght) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(CircuitLenght.class);
-		List<CircuitLenght> lista = criteria.list();
 		criteria.add(Restrictions.eq("idCircuitLenght", idCircuitLenght));
+		List<CircuitLenght> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
@@ -54,8 +54,8 @@ public class CircuitLenghtDAOImpl extends HibernateDAOSuportUtil implements Circ
 	public CircuitLenght getByNombre(String nombre) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(CircuitLenght.class);
-		List<CircuitLenght> lista = criteria.list();
 		criteria.add(Restrictions.eq("nombre", nombre));
+		List<CircuitLenght> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
@@ -65,12 +65,12 @@ public class CircuitLenghtDAOImpl extends HibernateDAOSuportUtil implements Circ
 	public String[] getAllOnlyNombres() {
 		
 		String[] items = null;
-		/*Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
-				createCriteria(CircuitLenght.class);*/
+		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
+				createCriteria(CircuitLenght.class);
+		List<CircuitLenght> lista = criteria.list();
 		
 		
-		
-		List<CircuitLenght> lista = getHibernateTemplate().find("FROM CircuitLenght as c ");
+		lista = getHibernateTemplate().find("FROM CircuitLenght as c ");
 		if(lista != null){
 			items = new String[lista.size()];
 			int i = 0;

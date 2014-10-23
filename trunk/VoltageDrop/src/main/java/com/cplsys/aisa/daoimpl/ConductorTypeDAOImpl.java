@@ -43,8 +43,8 @@ public class ConductorTypeDAOImpl extends HibernateDAOSuportUtil implements Cond
 	public ConductorType getById(Long idConductorType) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(ConductorType.class);
-		List<ConductorType> lista = criteria.list();
 		criteria.add(Restrictions.eq("idConductorType", idConductorType));
+		List<ConductorType> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
@@ -54,8 +54,8 @@ public class ConductorTypeDAOImpl extends HibernateDAOSuportUtil implements Cond
 	public ConductorType getByNombre(String nombre) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(ConductorType.class);
-		List<ConductorType> lista = criteria.list();
 		criteria.add(Restrictions.eq("nombre", nombre));
+		List<ConductorType> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 

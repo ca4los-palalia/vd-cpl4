@@ -42,8 +42,8 @@ public class SystemTypeDAOImpl extends HibernateDAOSuportUtil implements SystemT
 	public SystemType getById(Long idSystemType) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(SystemType.class);
-		List<SystemType> lista = criteria.list();
 		criteria.add(Restrictions.eq("idSystemType", idSystemType));
+		List<SystemType> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
@@ -53,8 +53,8 @@ public class SystemTypeDAOImpl extends HibernateDAOSuportUtil implements SystemT
 	public SystemType getByNombre(String nombre) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(SystemType.class);
-		List<SystemType> lista = criteria.list();
 		criteria.add(Restrictions.eq("nombre", nombre));
+		List<SystemType> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
