@@ -43,8 +43,8 @@ public class ConductorSizeDAOImpl extends HibernateDAOSuportUtil implements Cond
 	public ConductorSize getById(Long idConductorSize) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(ConductorSize.class);
-		List<ConductorSize> lista = criteria.list();
 		criteria.add(Restrictions.eq("idConductorSize", idConductorSize));
+		List<ConductorSize> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
@@ -54,8 +54,8 @@ public class ConductorSizeDAOImpl extends HibernateDAOSuportUtil implements Cond
 	public ConductorSize getByNombre(String nombre) {
 		Criteria criteria = getHibernateTemplate().getSessionFactory().openSession().
 				createCriteria(ConductorSize.class);
-		List<ConductorSize> lista = criteria.list();
 		criteria.add(Restrictions.eq("nombre", nombre));
+		List<ConductorSize> lista = criteria.list();
 		return lista != null && !lista.isEmpty() ? lista.get(0) : null;
 	}
 
