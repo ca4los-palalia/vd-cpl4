@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 
 @Service
-public class VoltageDropSession {
+public class SpannngSession {
 
 	public final static String CURRENT_MODULE = "CURRENT_MODULE";
 	public final static String CLIENT = "CLIENT";

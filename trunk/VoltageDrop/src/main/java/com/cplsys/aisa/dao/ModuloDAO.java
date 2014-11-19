@@ -12,4 +12,6 @@ public interface ModuloDAO {
 
 	List<Modulo> getAll();
 
+	List<Modulo> getChildren(Modulo modulo);
+
 }

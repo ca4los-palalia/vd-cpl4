@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.ui.main.utils.DefaultUIStructure;
 import com.cplsys.aisa.ui.main.utils.WorkSpacePanelVariables;
-import com.cplsys.aisa.utils.VoltageDropSession;
+import com.cplsys.aisa.utils.SpannngSession;
 
-/** Panel principal del área de trabajo */
+/** Panel principal del ï¿½rea de trabajo */
 @Repository
 public class WorkSpacePanel extends WorkSpacePanelVariables implements
 		DefaultUIStructure {
@@ -22,7 +22,7 @@ public class WorkSpacePanel extends WorkSpacePanelVariables implements
 	@Autowired
 	private StatusBarPanel statusBarPanel;
 	@Autowired
-	private VoltageDropSession voltageDropSession;
+	private SpannngSession spannungSession;
 
 	@PostConstruct
 	@Override
@@ -57,7 +57,7 @@ public class WorkSpacePanel extends WorkSpacePanelVariables implements
 	public void updateWorkSpace(Long serial) {
 		cardManager = (CardLayout) this.getLayout();
 		cardManager.show(this, String.valueOf(serial));
-		voltageDropSession.addVariableToSession(VoltageDropSession.CURRENT_MODULE, serial);
+		spannungSession.addVariableToSession(SpannngSession.CURRENT_MODULE, serial);
 	}
 
 	@Override
