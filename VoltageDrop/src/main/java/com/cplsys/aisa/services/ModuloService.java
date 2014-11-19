@@ -10,19 +10,23 @@ import com.cplsys.aisa.domain.Modulo;
 
 @Service
 public class ModuloService {
-
-	@Autowired
-	private ModuloDAO moduloDAO;
-
-	public void save(final Modulo modulo) {
-		moduloDAO.save(modulo);
-	}
-
-	public void delete(final Modulo modulo) {
-		moduloDAO.delete(modulo);
-	}
-
-	public List<Modulo> getAll() {
-		return moduloDAO.getAll();
-	}
+    
+    @Autowired
+    private ModuloDAO moduloDAO;
+    
+    public void save(final Modulo modulo) {
+	moduloDAO.save(modulo);
+    }
+    
+    public void delete(final Modulo modulo) {
+	moduloDAO.delete(modulo);
+    }
+    
+    public List<Modulo> getAll() {
+	return moduloDAO.getAll();
+    }
+    
+    public List<Modulo> getChildren(Modulo modulo) {
+	return moduloDAO.getChildren(modulo);
+    }
 }

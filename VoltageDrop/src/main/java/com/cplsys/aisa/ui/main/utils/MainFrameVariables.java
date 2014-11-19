@@ -1,7 +1,9 @@
 package com.cplsys.aisa.ui.main.utils;
 
 import java.awt.GridBagConstraints;
+import java.awt.event.ActionListener;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -61,5 +63,8 @@ public abstract class MainFrameVariables extends JFrame implements
 	protected JMenu about;
 	protected JMenuItem acercaDe;
 	protected JMenuItem help;
+	
+	protected JDialog controlPanelDialog;
 
+	
 }

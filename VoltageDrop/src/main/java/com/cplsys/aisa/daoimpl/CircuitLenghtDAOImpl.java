@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cplsys.aisa.dao.CircuitLenghtDAO;
 import com.cplsys.aisa.domain.CircuitLenght;
-import com.cplsys.aisa.domain.SystemType;
 import com.cplsys.aisa.utils.HibernateDAOSuportUtil;
 
 @Repository

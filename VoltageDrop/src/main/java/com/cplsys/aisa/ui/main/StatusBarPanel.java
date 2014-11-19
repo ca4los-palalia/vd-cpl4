@@ -1,7 +1,6 @@
 package com.cplsys.aisa.ui.main;
 
 import java.awt.Color;
-import java.awt.Component;
 
 import javax.annotation.PostConstruct;
 import javax.swing.BorderFactory;

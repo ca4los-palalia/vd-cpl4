@@ -9,32 +9,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@SuppressWarnings("serial")
 @Entity
 @Table
-public class ConductorType implements Serializable {
+public class Coil implements Serializable {
     
-    private Long   idConductorType;
-    private String nombre;
+    private static final long serialVersionUID = 2214059889994193835L;
+    
+    private Long              idCoil;
+    private String            range;
     
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getIdConductorType() {
-	return idConductorType;
+    public Long getIdCoil() {
+	return idCoil;
     }
     
-    public void setIdConductorType(Long idConductorType) {
-	this.idConductorType = idConductorType;
+    public void setIdCoil(Long idCoil) {
+	this.idCoil = idCoil;
     }
     
     @Column
-    public String getNombre() {
-	return nombre;
+    public String getRange() {
+	return range;
     }
     
-    public void setNombre(String nombre) {
-	this.nombre = nombre;
+    public void setRange(String range) {
+	this.range = range;
     }
     
 }
