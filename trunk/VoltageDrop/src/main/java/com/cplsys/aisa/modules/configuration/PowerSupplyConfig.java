@@ -32,14 +32,14 @@ public class PowerSupplyConfig extends PowerSupplyConfigVariables {
     public void initObjects() {
 	title = new JLabel("Power Supply");
 	partNo = new JLabel("Part No.");
-	partNoField = new JTextField(15);
+	partNoField = new JTextField(10);
 	voltageInput = new JLabel("Voltage Input");
 	voltageOutput = new JLabel("Voltage Output");
 	voltageInputCombo = new JComboBox<Object>();
 	voltageOutputCombo = new JComboBox<Object>();
-	mfcField = new JTextField(15);
+	mfcField = new JTextField(10);
 	watts = new JLabel("Watts");
-	wattsField = new JTextField(15);
+	wattsField = new JTextField(10);
 	mfc = new JLabel("MFC");
     }
     

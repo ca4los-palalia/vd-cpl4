@@ -88,7 +88,7 @@ public class PilotLampConfig extends PilotLampVariables {
 	panelConstraints.fill = GridBagConstraints.HORIZONTAL;
 	panelConstraints.gridx = 0;
 	panelConstraints.gridy = 2;
-	panelConstraints.insets = new Insets(0, 0, 20, 0);
+	panelConstraints.insets = new Insets(0, 0, 0, 0);
 	panel.add(voltageLabel, panelConstraints);
 	
 	panelConstraints.gridx = 1;

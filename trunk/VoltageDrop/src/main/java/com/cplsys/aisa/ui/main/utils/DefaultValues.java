@@ -10,44 +10,64 @@ import org.springframework.stereotype.Component;
 import com.cplsys.aisa.domain.CircuitLenght;
 import com.cplsys.aisa.domain.Coil;
 import com.cplsys.aisa.domain.Modulo;
+import com.cplsys.aisa.domain.MotorProtectorTypes;
+import com.cplsys.aisa.domain.PLCDeviceType;
+import com.cplsys.aisa.domain.VoltageInputValues;
+import com.cplsys.aisa.domain.VoltageOutputValues;
 import com.cplsys.aisa.services.CircuitLenghtService;
 import com.cplsys.aisa.services.CoilService;
 import com.cplsys.aisa.services.ConductorSizeService;
 import com.cplsys.aisa.services.ConductorTypeService;
 import com.cplsys.aisa.services.ConduitTypeService;
 import com.cplsys.aisa.services.ModuloService;
+import com.cplsys.aisa.services.MotorProtectorTypeService;
+import com.cplsys.aisa.services.PLCDeviceTypeService;
 import com.cplsys.aisa.services.SystemTypeService;
+import com.cplsys.aisa.services.VoltageInputValueService;
+import com.cplsys.aisa.services.VoltageOutputValueService;
 
 @Component
 public class DefaultValues {
     
     @Autowired
-    private ModuloService        moduloService;
+    private ModuloService             moduloService;
     
     @Autowired
-    private CircuitLenghtService circuitLenghtService;
+    private CircuitLenghtService      circuitLenghtService;
     
     @Autowired
-    private ConductorSizeService conductorSizeService;
+    private ConductorSizeService      conductorSizeService;
     
     @Autowired
-    private ConductorTypeService conductorTypeService;
+    private ConductorTypeService      conductorTypeService;
     
     @Autowired
-    private ConduitTypeService   conduitTypeService;
+    private ConduitTypeService        conduitTypeService;
     
     @Autowired
-    private SystemTypeService    systemTypeService;
+    private SystemTypeService         systemTypeService;
     
     @Autowired
-    private CoilService          coilService;
+    private CoilService               coilService;
+    
+    @Autowired
+    private MotorProtectorTypeService motorProtectorService;
+    
+    @Autowired
+    private PLCDeviceTypeService      plcDeviceTypeService;
+    
+    @Autowired
+    private VoltageInputValueService  voltageInputService;
+    
+    @Autowired
+    private VoltageOutputValueService voltageOutputService;
     
     @PostConstruct
     public void init() {
 	populateModules();
 	insercionesParaCatalogosDropVoltage();
 	populateCoilValues();
-	
+	populateCatalogos();
     }
     
     private void populateModules() {
@@ -199,4 +219,33 @@ public class DefaultValues {
 	}
     }
     
+    private void populateCatalogos() {
+	List<MotorProtectorTypes> motorTypes = motorProtectorService.getAll();
+	if (motorTypes.isEmpty()) {
+	    motorProtectorService.save(new MotorProtectorTypes("Non-Time Delay Fuse"));
+	    motorProtectorService.save(new MotorProtectorTypes("Dual Element (Time Delay) Fuse"));
+	    motorProtectorService.save(new MotorProtectorTypes("Instantaneus Trip Breaker"));
+	    motorProtectorService.save(new MotorProtectorTypes("Inverse Trip Breaker"));
+	}
+	List<PLCDeviceType> plcDevices = plcDeviceTypeService.getAll();
+	if (plcDevices.isEmpty()) {
+	    plcDeviceTypeService.save(new PLCDeviceType("CPU"));
+	    plcDeviceTypeService.save(new PLCDeviceType("Remote I/O Card"));
+	    plcDeviceTypeService.save(new PLCDeviceType("Remote Adapter"));
+	    plcDeviceTypeService.save(new PLCDeviceType("Expansio Power Supply"));
+        }
+	List<VoltageInputValues> voltageInputValues = voltageInputService.getAll();
+	if (voltageInputValues.isEmpty()) {
+	    voltageInputService.save(new VoltageInputValues("24 VAC"));
+	    voltageInputService.save(new VoltageInputValues("110-127 VAC"));
+	    voltageInputService.save(new VoltageInputValues("220-240 VAC"));
+	    voltageInputService.save(new VoltageInputValues("440 VAC"));
+        }
+	List<VoltageOutputValues> voltageIOutputValues = voltageOutputService.getAll();
+	if (voltageIOutputValues.isEmpty()) {
+	    voltageOutputService.save(new VoltageOutputValues("24 VDC"));
+	    voltageOutputService.save(new VoltageOutputValues("12 VDC"));
+	    voltageOutputService.save(new VoltageOutputValues("5 VDC"));
+        }
+    }
 }
