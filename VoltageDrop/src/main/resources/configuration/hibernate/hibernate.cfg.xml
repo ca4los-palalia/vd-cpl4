@@ -31,11 +31,15 @@
 		<mapping class="com.cplsys.aisa.domain.ConductorType" />
 		<mapping class="com.cplsys.aisa.domain.ConduitType" />
 		<mapping class="com.cplsys.aisa.domain.Modulo" />
+		<mapping class="com.cplsys.aisa.domain.MotorProtectorTypes" />
+		<mapping class="com.cplsys.aisa.domain.PLCDeviceType" />
 		<mapping class="com.cplsys.aisa.domain.Rectancia" />
 		<mapping class="com.cplsys.aisa.domain.Resistencia" />
 		<mapping class="com.cplsys.aisa.domain.SystemType" />
 		<mapping class="com.cplsys.aisa.domain.TipoMaterialResistencia" />
 		<mapping class="com.cplsys.aisa.domain.TipoTuberiaRectancia" />
+		<mapping class="com.cplsys.aisa.domain.VoltageInputValues" />
+		<mapping class="com.cplsys.aisa.domain.VoltageOutputValues" />
 	</session-factory>
 
 </hibernate-configuration>
