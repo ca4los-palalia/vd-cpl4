@@ -2,8 +2,6 @@ package com.cplsys.aisa.ui.main.utils;
 
 import java.io.Serializable;
 
-import javax.swing.JComponent;
-
 public interface DefaultUIStructure extends Serializable {
     
     public void init();

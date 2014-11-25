@@ -3,8 +3,11 @@ package com.cplsys.aisa.modules.configuration;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.util.Collection;
+import java.util.Vector;
 
 import javax.annotation.PostConstruct;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -13,7 +16,9 @@ import javax.swing.JTextField;
 
 import org.springframework.stereotype.Repository;
 
+import com.cplsys.aisa.domain.Coil;
 import com.cplsys.aisa.modules.variables.ContactorConfigVariables;
+import com.cplsys.aisa.ui.render.CoilComboRender;
 
 @Repository
 public class ContactorConfig extends ContactorConfigVariables {
@@ -24,6 +29,8 @@ public class ContactorConfig extends ContactorConfigVariables {
     @Override
     public void init() {
 	initObjects();
+	initProperties();
+	initListeners();
 	createUI();
     }
     
@@ -38,7 +45,7 @@ public class ContactorConfig extends ContactorConfigVariables {
 	
 	sizeField = new JTextField(15);
 	partField = new JTextField(15);
-	coildCombo = new JComboBox<Object>();
+	coildCombo = new JComboBox<Coil>();
 	coilVAField = new JTextField(15);
 	mfcField = new JTextField(15);
     }
@@ -46,6 +53,8 @@ public class ContactorConfig extends ContactorConfigVariables {
     @Override
     public void initProperties() {
 	title.setAlignmentX(CENTER_ALIGNMENT);
+	coildCombo.setModel(new DefaultComboBoxModel<Coil>(new Vector<Coil>(servicesLayer.getCoilService().getAll())));
+	coildCombo.setRenderer(new CoilComboRender());
     }
     
     @Override
@@ -54,7 +63,7 @@ public class ContactorConfig extends ContactorConfigVariables {
     }
     
     @Override
-    public void createUI() {	
+    public void createUI() {
 	JPanel panel = new JPanel();
 	JPanel footer = new JPanel();
 	
@@ -66,14 +75,14 @@ public class ContactorConfig extends ContactorConfigVariables {
 	
 	GridBagConstraints panelConstraints = new GridBagConstraints();
 	GridBagConstraints footerConstraints = new GridBagConstraints();
-
+	
 	panelConstraints.fill = GridBagConstraints.CENTER;
 	panelConstraints.gridx = 0;
 	panelConstraints.gridy = 0;
 	panelConstraints.insets = new Insets(0, 0, 10, 0);
 	panel.add(title, panelConstraints);
 	panelConstraints = new GridBagConstraints();
-		
+	
 	panelConstraints.fill = GridBagConstraints.HORIZONTAL;
 	panelConstraints.gridx = 0;
 	panelConstraints.gridy = 1;
