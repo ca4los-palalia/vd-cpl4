@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.annotation.PostConstruct;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -14,6 +15,7 @@ import javax.swing.JTextField;
 
 import org.springframework.stereotype.Repository;
 
+import com.cplsys.aisa.domain.MotorProtectorTypes;
 import com.cplsys.aisa.modules.variables.MotorProtectorConfigVariables;
 
 @Repository
@@ -31,7 +33,7 @@ public class MotorProtectorConfig extends MotorProtectorConfigVariables {
     @Override
     public void initObjects() {
 	title = new JLabel("Motor Protector");
-	type = new JComboBox<Object>();
+	type = new JComboBox<MotorProtectorTypes>();
 	typeLabel = new JLabel("Type");
 	partNoLabel = new JLabel("Part No");
 	partSpinner = new JSpinner();
@@ -42,8 +44,8 @@ public class MotorProtectorConfig extends MotorProtectorConfigVariables {
     }
     
     @Override
-    public void initProperties() {
-	
+    public void initProperties() {	
+	//type.setModel(new DefaultComboBoxModel<MotorProtectorTypes>(v));
     }
     
     @Override

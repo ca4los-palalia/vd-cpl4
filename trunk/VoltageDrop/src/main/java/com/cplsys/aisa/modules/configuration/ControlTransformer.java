@@ -47,13 +47,12 @@ public class ControlTransformer extends ControlTransformerVariables {
     
     @Override
     public void initProperties() {
-	// TODO Auto-generated method stub
-	
+	System.err.println(char[].class);
+	System.out.println(byte[].class);
     }
     
     @Override
     public void initListeners() {
-	// TODO Auto-generated method stub
 	
     }
     
