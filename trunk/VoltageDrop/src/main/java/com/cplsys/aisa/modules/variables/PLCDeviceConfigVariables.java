@@ -8,14 +8,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cplsys.aisa.domain.PLCDeviceType;
 import com.cplsys.aisa.ui.main.utils.DefaultUIStructure;
+import com.cplsys.aisa.utils.ServicesLayer;
 
 public abstract class PLCDeviceConfigVariables extends JPanel implements DefaultUIStructure {
     
     private static final long   serialVersionUID = -8737701557429103624L;
+    @Autowired
+    protected ServicesLayer   servicesLayer;
     protected JLabel            title;
     protected JLabel            type;
-    protected JComboBox<Object> typeCombo;
+    protected JComboBox<PLCDeviceType> typeCombo;
     protected JLabel            description;
     protected JTextArea         descriptionArea;
     protected JLabel            partNoLabel;
