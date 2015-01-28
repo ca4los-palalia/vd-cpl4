@@ -12,6 +12,12 @@ public class VoltageOutputComboRender extends JLabel implements ListCellRenderer
     
     private static final long serialVersionUID = 2780453918342941184L;
     
+    public VoltageOutputComboRender() {
+		setOpaque(true);
+		setHorizontalAlignment(CENTER);
+		setVerticalAlignment(CENTER);
+	}
+    
     @Override
     public Component getListCellRendererComponent(JList<? extends VoltageOutputValues> list, VoltageOutputValues value, int index, boolean isSelected, boolean cellHasFocus) {
 	if (isSelected) {

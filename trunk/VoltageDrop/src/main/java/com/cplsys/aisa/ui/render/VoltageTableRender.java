@@ -17,7 +17,7 @@ public class VoltageTableRender extends DefaultTableCellRenderer {
 
 		JLabel etiqueta = new JLabel();
 		etiqueta.setOpaque(true);
-		
+
 		if (row % 2 == 0) {
 			etiqueta.setBackground(new Color(124, 139, 178));
 			etiqueta.setForeground(Color.WHITE);
@@ -30,7 +30,7 @@ public class VoltageTableRender extends DefaultTableCellRenderer {
 			etiqueta.setBackground(new Color(28, 37, 63));
 			etiqueta.setForeground(Color.RED);
 		}
-		
+
 		return etiqueta;
 	}
 
