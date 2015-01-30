@@ -11,9 +11,11 @@ import com.cplsys.aisa.services.ConduitTypeService;
 import com.cplsys.aisa.services.InformacionParaCalculoService;
 import com.cplsys.aisa.services.ModuloService;
 import com.cplsys.aisa.services.MotorProtectorTypeService;
+import com.cplsys.aisa.services.OtherLoadService;
 import com.cplsys.aisa.services.PLCDeviceTypeService;
 import com.cplsys.aisa.services.SystemTypeService;
 import com.cplsys.aisa.services.VoltageInputValueService;
+import com.cplsys.aisa.services.VoltageOutputValueService;
 
 @Service
 public class ServicesLayer {
@@ -50,8 +52,13 @@ public class ServicesLayer {
 
 	@Autowired
 	private VoltageInputValueService voltageInputValueService;
+
+	@Autowired
+	private VoltageOutputValueService voltageOutputValueService;
 	
-	
+	@Autowired
+	private OtherLoadService otherLoadService;
+
 	public ModuloService getModuloService() {
 		return moduloService;
 	}
@@ -132,4 +139,11 @@ public class ServicesLayer {
 		return voltageInputValueService;
 	}
 
+	public OtherLoadService getOtherLoadService() {
+		return otherLoadService;
+	}
+
+	public VoltageOutputValueService getVoltageOutputValueService() {
+		return voltageOutputValueService;
+	}
 }
