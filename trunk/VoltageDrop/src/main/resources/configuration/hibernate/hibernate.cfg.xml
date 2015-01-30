@@ -32,6 +32,7 @@
 		<mapping class="com.cplsys.aisa.domain.ConduitType" />
 		<mapping class="com.cplsys.aisa.domain.Modulo" />
 		<mapping class="com.cplsys.aisa.domain.MotorProtectorTypes" />
+		<mapping class="com.cplsys.aisa.domain.OtherLoads" />
 		<mapping class="com.cplsys.aisa.domain.PLCDeviceType" />
 		<mapping class="com.cplsys.aisa.domain.Rectancia" />
 		<mapping class="com.cplsys.aisa.domain.Resistencia" />
