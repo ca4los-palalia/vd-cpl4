@@ -3,6 +3,7 @@ package com.cplsys.aisa.modules.configuration;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.Vector;
 
@@ -10,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -200,5 +202,29 @@ public class ContactorConfig extends ContactorConfigVariables {
     public static long getSerialversionuid() {
 	return serialVersionUID;
     }
+
+	@Override
+	public boolean validateComponents(JComponent... component) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void resetUIValues(JComponent... components) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registerPopUpExitListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unregisterPopUpListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

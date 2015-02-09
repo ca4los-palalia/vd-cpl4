@@ -1,20 +1,26 @@
 package com.cplsys.aisa.modules.configuration;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.annotation.PostConstruct;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +32,7 @@ import com.cplsys.aisa.ui.render.OtherLoadsRender;
 public class OtherLoadsConfig extends OtherLoadsVariables {
 
 	private static final long serialVersionUID = 8204122911914966685L;
+	
 
 	@PostConstruct
 	@Override
@@ -51,6 +58,10 @@ public class OtherLoadsConfig extends OtherLoadsVariables {
 		wattsField = new JTextField(15);
 		mfcField = new JTextField(15);
 		scrollDescription = new JScrollPane(descriptionArea);
+		
+		save = new JButton("Save");
+		cancel = new JButton("Cancel");
+		close = new JButton("Close");
 	}
 
 	@Override
@@ -65,6 +76,36 @@ public class OtherLoadsConfig extends OtherLoadsVariables {
 
 	@Override
 	public void initListeners() {
+		save.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(validateComponents(descriptionArea, partNoField, mfcField)) {
+					OtherLoads load = (OtherLoads)typeCombo.getSelectedItem();
+					String dscr =  descriptionArea.getText();
+					String part = partNoField.getText();
+					String mfc = mfcField.getText();	
+					resetUIValues(descriptionArea, mfcField, partNoField);
+				}
+			}
+		});
+		
+		cancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resetUIValues(descriptionArea, mfcField, partNoField);
+				unregisterPopUpListener(cancel.getActionListeners()[MAIN_POP_UP_LISTENER]);
+			}
+		});
+		
+		close.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resetUIValues(descriptionArea, mfcField, partNoField);
+				unregisterPopUpListener(cancel.getActionListeners()[MAIN_POP_UP_LISTENER]);
+			}
+		});
 
 	}
 
@@ -134,19 +175,19 @@ public class OtherLoadsConfig extends OtherLoadsVariables {
 		footerConstraints.gridx = 0;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 1, 0, 1);
-		footer.add(new JButton("Save"), footerConstraints);
+		footer.add(save, footerConstraints);
 
 		footerConstraints.fill = GridBagConstraints.HORIZONTAL;
 		footerConstraints.gridx = 1;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 1, 0, 1);
-		footer.add(new JButton("Cancel"), footerConstraints);
+		footer.add(cancel, footerConstraints);
 
 		footerConstraints.fill = GridBagConstraints.HORIZONTAL;
 		footerConstraints.gridx = 2;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 0, 0, 3);
-		footer.add(new JButton("Close"), footerConstraints);
+		footer.add(close, footerConstraints);
 
 		panelConstraints.gridx = 0;
 		panelConstraints.gridy = 5;
@@ -196,11 +237,48 @@ public class OtherLoadsConfig extends OtherLoadsVariables {
 
 	@Override
 	public void salir() {
-		// TODO Auto-generated method stub
-
+		resetUIValues(descriptionArea, partNoField, mfcField);
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	@Override
+	public boolean validateComponents(JComponent... components) {
+		boolean validated = true;
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof JTextComponent ) {
+				JTextComponent component = (JTextComponent) components[i]; 
+				if (component.getText().isEmpty()) {
+					component.setBorder(BorderFactory.createLineBorder(Color.RED));
+					validated = false;
+				}
+			}
+		}
+		return validated;
+	}
+
+	@Override
+	public void resetUIValues(JComponent... components) {
+		for (int i = 0; i < components.length; i++) {
+			components[i].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			if (components[i] instanceof JTextComponent ) {
+				((JTextComponent) components[i]).setText("");				
+			}
+		}
+	}
+
+	@Override
+	public void registerPopUpExitListener(ActionListener actionListener) {
+		close.addActionListener(actionListener);
+		cancel.addActionListener(actionListener);
+	}
+
+	@Override
+	public void unregisterPopUpListener(ActionListener actionListener) {
+		close.removeActionListener(actionListener);
+		cancel.addActionListener(actionListener);
+	}
+	
 }
