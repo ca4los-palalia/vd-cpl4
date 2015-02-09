@@ -1,9 +1,11 @@
 package com.cplsys.aisa.ui.main;
 
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.annotation.PostConstruct;
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 
 import org.springframework.stereotype.Repository;
 
@@ -78,6 +80,30 @@ public class StatusBarPanel extends StatusBarPanelVariables implements
 
 	@Override
 	public void salir() {
+		
+	}
+
+	@Override
+	public boolean validateComponents(JComponent... component) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void resetUIValues(JComponent... components) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registerPopUpExitListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unregisterPopUpListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
 		
 	}
 
