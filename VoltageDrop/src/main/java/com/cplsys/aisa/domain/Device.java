@@ -9,35 +9,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table
 @Entity
-public class PLCDeviceType implements Serializable {
+@Table
+public class Device implements Serializable {
 
-	private static final long serialVersionUID = -2598852058173267482L;
-	private Long idPLCDevice;
+	private static final long serialVersionUID = 1L;
+
+	private Long idDevice;
 	private String name;
-
-	public PLCDeviceType() {
-
-	}
-
-	public PLCDeviceType(String name) {
-		super();
-		this.name = name;
-	}
 
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getIdPLCDevice() {
-		return idPLCDevice;
+	public Long getIdDevice() {
+		return idDevice;
 	}
 
-	public void setIdPLCDevice(Long idPLCDevice) {
-		this.idPLCDevice = idPLCDevice;
+	public void setIdDevice(Long idDevice) {
+		this.idDevice = idDevice;
 	}
 
-	@Column
 	public String getName() {
 		return name;
 	}
