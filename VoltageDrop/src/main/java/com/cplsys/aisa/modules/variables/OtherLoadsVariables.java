@@ -1,5 +1,8 @@
 package com.cplsys.aisa.modules.variables;
 
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -18,6 +21,9 @@ public abstract class OtherLoadsVariables extends JPanel implements
 		DefaultUIStructure {
 
 	private static final long serialVersionUID = 532677902885225808L;
+
+	protected static final int MAIN_POP_UP_LISTENER = 0;
+	
 	@Autowired
 	protected ServicesLayer servicesLayer;
 	protected JLabel title;
@@ -34,6 +40,10 @@ public abstract class OtherLoadsVariables extends JPanel implements
 	protected JTextField mfcField;
 	protected JScrollPane scrollDescription;
 
+	protected JButton save;
+	protected JButton cancel;
+	protected JButton close;
+	
 	public void graphicInterfaceBuilder(JComponent component) {
 		this.add(component);
 	}
