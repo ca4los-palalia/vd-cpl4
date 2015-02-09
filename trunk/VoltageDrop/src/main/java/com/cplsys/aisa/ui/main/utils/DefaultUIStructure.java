@@ -1,6 +1,9 @@
 package com.cplsys.aisa.ui.main.utils;
 
+import java.awt.event.ActionListener;
 import java.io.Serializable;
+
+import javax.swing.JComponent;
 
 public interface DefaultUIStructure extends Serializable {
     
@@ -27,5 +30,13 @@ public interface DefaultUIStructure extends Serializable {
     public void print();
     
     public void salir();
+    
+    public boolean validateComponents(JComponent... components);
+    
+    public void resetUIValues(JComponent...components);
+    
+    public void registerPopUpExitListener(ActionListener actionListener);
+    
+    public void unregisterPopUpListener(ActionListener actionListener);
     
 }
