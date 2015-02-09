@@ -1,4 +1,4 @@
-package com.cplsys.aisa.ui;
+package com.cplsys.aisa.modules.variables;
 
 import java.util.List;
 
