@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
@@ -245,6 +246,30 @@ public class VoltageDropView extends VoltageDropViewVariables {
 	@Override
 	public void salir() {
 		System.err.println("Salir del sistema desde VoltageDropView");
+	}
+
+	@Override
+	public boolean validateComponents(JComponent... component) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void resetUIValues(JComponent... components) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registerPopUpExitListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unregisterPopUpListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
