@@ -4,12 +4,14 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.annotation.PostConstruct;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -228,5 +230,29 @@ public class PLCDeviceConfig extends PLCDeviceConfigVariables {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public boolean validateComponents(JComponent... component) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void resetUIValues(JComponent... components) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registerPopUpExitListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unregisterPopUpListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
 	}
 }
