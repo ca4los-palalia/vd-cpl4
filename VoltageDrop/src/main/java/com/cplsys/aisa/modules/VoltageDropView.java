@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JTable;
 import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +31,7 @@ import com.cplsys.aisa.ui.render.VoltageComboBoxRender;
 import com.cplsys.aisa.ui.render.VoltageSpinnerRender;
 import com.cplsys.aisa.ui.render.VoltageTableRender;
 
-@Repository
+//@Repository
 public class VoltageDropView extends VoltageDropViewVariables {
 
 	private static final long serialVersionUID = 6576152466060289826L;
@@ -246,6 +247,30 @@ public class VoltageDropView extends VoltageDropViewVariables {
 	@Override
 	public void salir() {
 		System.err.println("Salir del sistema desde VoltageDropView");
+	}
+
+	@Override
+	public boolean validateComponents(JComponent... components) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void resetUIValues(JComponent... components) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registerPopUpExitListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unregisterPopUpListener(ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
