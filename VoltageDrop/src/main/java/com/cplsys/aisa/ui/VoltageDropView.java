@@ -23,6 +23,7 @@ import javax.swing.table.TableColumn;
 import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.domain.CaidaVoltaje;
+import com.cplsys.aisa.modules.variables.VoltageDropViewVariables;
 import com.cplsys.aisa.ui.editors.ComboBoxEditor;
 import com.cplsys.aisa.ui.editors.SpinnerEditor;
 import com.cplsys.aisa.ui.model.VoltageTableModel;
