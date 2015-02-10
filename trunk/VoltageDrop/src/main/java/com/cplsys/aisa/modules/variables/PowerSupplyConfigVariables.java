@@ -1,5 +1,6 @@
 package com.cplsys.aisa.modules.variables;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -18,6 +19,7 @@ import com.cplsys.aisa.utils.ServicesLayer;
 public abstract class PowerSupplyConfigVariables extends JPanel implements DefaultUIStructure {
 
     private static final long serialVersionUID = -7396692176570209290L;
+    protected static final int MAIN_POP_UP_LISTENER = 0;
     
     @Autowired
     protected ServicesLayer servicesLayer;
@@ -33,6 +35,9 @@ public abstract class PowerSupplyConfigVariables extends JPanel implements Defau
     protected JTextField wattsField;
     protected JLabel mfc;
     protected JTextField mfcField;
+    protected JButton save;
+    protected JButton cancel;
+    protected JButton close;
     
     public void graphicInterfaceBuilder(JComponent component) {
 	this.add(component);

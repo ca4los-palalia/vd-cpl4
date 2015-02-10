@@ -1,5 +1,6 @@
 package com.cplsys.aisa.modules.variables;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -16,6 +17,8 @@ public abstract class PilotLampVariables extends JPanel implements
 		DefaultUIStructure {
 
 	private static final long serialVersionUID = -4777303461441110688L;
+	protected static final int MAIN_POP_UP_LISTENER = 0;
+	
 	@Autowired
 	protected ServicesLayer servicesLayer;
 	protected JLabel title;
@@ -28,6 +31,10 @@ public abstract class PilotLampVariables extends JPanel implements
 	protected JTextField wattsField;
 	protected JTextField mfcField;
 	protected JLabel mfcLabel;
+
+	protected JButton save;
+	protected JButton cancel;
+	protected JButton close;
 
 	public void graphicInterfaceBuilder(JComponent component) {
 		this.add(component);

@@ -1,7 +1,5 @@
 package com.cplsys.aisa.modules.variables;
 
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
