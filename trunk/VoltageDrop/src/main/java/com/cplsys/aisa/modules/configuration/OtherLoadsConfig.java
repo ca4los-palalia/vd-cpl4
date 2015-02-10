@@ -278,7 +278,7 @@ public class OtherLoadsConfig extends OtherLoadsVariables {
 	@Override
 	public void unregisterPopUpListener(ActionListener actionListener) {
 		close.removeActionListener(actionListener);
-		cancel.addActionListener(actionListener);
+		cancel.removeActionListener(actionListener);
 	}
 	
 }

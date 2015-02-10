@@ -1,12 +1,15 @@
 package com.cplsys.aisa.modules.configuration;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.annotation.PostConstruct;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -15,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import org.springframework.stereotype.Repository;
 
@@ -33,7 +37,7 @@ public class MotorProtectorConfig extends MotorProtectorConfigVariables {
 		initObjects();
 		initProperties();
 		createUI();
-
+		initListeners();
 	}
 
 	@Override
@@ -47,6 +51,9 @@ public class MotorProtectorConfig extends MotorProtectorConfigVariables {
 		sizeSpinner = new JSpinner();
 		mfcLabel = new JLabel("MFC");
 		mfcField = new JTextField(15);
+		save = new JButton("Save");
+		cancel = new JButton("Cancel");
+		close = new JButton("Close");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -59,7 +66,34 @@ public class MotorProtectorConfig extends MotorProtectorConfigVariables {
 
 	@Override
 	public void initListeners() {
+		save.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (validateComponents(mfcField)) {
+
+				}
+
+			}
+		});
+
+		cancel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resetUIValues(mfcField);
+				unregisterPopUpListener(cancel.getActionListeners()[MAIN_POP_UP_LISTENER]);
+			}
+		});
+
+		close.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resetUIValues(mfcField);
+				unregisterPopUpListener(cancel.getActionListeners()[MAIN_POP_UP_LISTENER]);
+			}
+		});
 	}
 
 	@Override
@@ -129,19 +163,19 @@ public class MotorProtectorConfig extends MotorProtectorConfigVariables {
 		footerConstraints.gridx = 0;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 1, 0, 1);
-		footer.add(new JButton("Save"), footerConstraints);
+		footer.add(save, footerConstraints);
 
 		footerConstraints.fill = GridBagConstraints.HORIZONTAL;
 		footerConstraints.gridx = 1;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 1, 0, 1);
-		footer.add(new JButton("Cancel"), footerConstraints);
+		footer.add(cancel, footerConstraints);
 
 		footerConstraints.fill = GridBagConstraints.HORIZONTAL;
 		footerConstraints.gridx = 2;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 0, 0, 3);
-		footer.add(new JButton("Close"), footerConstraints);
+		footer.add(close, footerConstraints);
 
 		panelConstraints.gridx = 0;
 		panelConstraints.gridy = 5;
@@ -201,26 +235,41 @@ public class MotorProtectorConfig extends MotorProtectorConfigVariables {
 	}
 
 	@Override
-	public boolean validateComponents(JComponent... component) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validateComponents(JComponent... components) {
+		boolean validated = true;
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof JTextComponent) {
+				JTextComponent component = (JTextComponent) components[i];
+				if (component.getText().isEmpty()) {
+					component.setBorder(BorderFactory
+							.createLineBorder(Color.RED));
+					validated = false;
+				}
+			}
+		}
+		return validated;
 	}
 
 	@Override
 	public void resetUIValues(JComponent... components) {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < components.length; i++) {
+			components[i]
+					.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			if (components[i] instanceof JTextComponent) {
+				((JTextComponent) components[i]).setText("");
+			}
+		}
 	}
 
 	@Override
 	public void registerPopUpExitListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		close.addActionListener(actionListener);
+		cancel.addActionListener(actionListener);
 	}
 
 	@Override
 	public void unregisterPopUpListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		close.removeActionListener(actionListener);
+		cancel.removeActionListener(actionListener);
 	}
 }
