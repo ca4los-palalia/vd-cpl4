@@ -1,13 +1,16 @@
 package com.cplsys.aisa.modules.configuration;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.annotation.PostConstruct;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,20 +20,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.domain.PLCDeviceType;
 import com.cplsys.aisa.modules.variables.PLCDeviceConfigVariables;
 import com.cplsys.aisa.ui.render.PLCDeviceComboRender;
-import com.cplsys.aisa.utils.ServicesLayer;
 
 @Repository
 public class PLCDeviceConfig extends PLCDeviceConfigVariables {
 
-	/**
-     * 
-     */
 	private static final long serialVersionUID = 3098382023218932519L;
 
 	@PostConstruct
@@ -39,6 +39,7 @@ public class PLCDeviceConfig extends PLCDeviceConfigVariables {
 		initObjects();
 		createUI();
 		initProperties();
+		initListeners();
 	}
 
 	@Override
@@ -57,21 +58,56 @@ public class PLCDeviceConfig extends PLCDeviceConfigVariables {
 		partNoField = new JTextField(15);
 		voltageLabel = new JLabel("Voltage");
 		scrollDescription = new JScrollPane(descriptionArea);
-		
+		save = new JButton("Save");
+		cancel = new JButton("Cancel");
+		close = new JButton("Close");
+
 	}
 
 	@Override
 	public void initProperties() {
 		descriptionArea.setLineWrap(true);
 		descriptionArea.setPreferredSize(new Dimension(170, 20));
-		typeCombo.setModel(new DefaultComboBoxModel<PLCDeviceType>(new Vector<PLCDeviceType>(
-				servicesLayer.getPlcDeviceTypeService().getAll())));
+		typeCombo.setModel(new DefaultComboBoxModel<PLCDeviceType>(
+				new Vector<PLCDeviceType>(servicesLayer
+						.getPlcDeviceTypeService().getAll())));
 		typeCombo.setRenderer(new PLCDeviceComboRender());
 	}
 
 	@Override
 	public void initListeners() {
+		save.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (validateComponents(descriptionArea, voltage, wattsField, mfcField, partNoField)) {
+					String desc = descriptionArea.getText();
+					String volt = voltage.getText();
+					String watts = wattsField.getText();
+					String part = partNoField.getText();
+					String mfc = mfcField.getText();
+				}
+
+			}
+		});
+
+		cancel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resetUIValues(descriptionArea, voltage, wattsField, mfcField, partNoField);
+				unregisterPopUpListener(cancel.getActionListeners()[MAIN_POP_UP_LISTENER]);
+			}
+		});
+
+		close.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resetUIValues(descriptionArea, voltage, wattsField, mfcField, partNoField);
+				unregisterPopUpListener(cancel.getActionListeners()[MAIN_POP_UP_LISTENER]);
+			}
+		});
 	}
 
 	@Override
@@ -161,19 +197,19 @@ public class PLCDeviceConfig extends PLCDeviceConfigVariables {
 		footerConstraints.gridx = 0;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 1, 0, 1);
-		footer.add(new JButton("Save"), footerConstraints);
+		footer.add(save, footerConstraints);
 
 		footerConstraints.fill = GridBagConstraints.HORIZONTAL;
 		footerConstraints.gridx = 1;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 1, 0, 1);
-		footer.add(new JButton("Cancel"), footerConstraints);
+		footer.add(cancel, footerConstraints);
 
 		footerConstraints.fill = GridBagConstraints.HORIZONTAL;
 		footerConstraints.gridx = 2;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 0, 0, 3);
-		footer.add(new JButton("Close"), footerConstraints);
+		footer.add(close, footerConstraints);
 
 		panelConstraints.gridx = 0;
 		panelConstraints.gridy = 7;
@@ -233,26 +269,41 @@ public class PLCDeviceConfig extends PLCDeviceConfigVariables {
 	}
 
 	@Override
-	public boolean validateComponents(JComponent... component) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validateComponents(JComponent... components) {
+		boolean validated = true;
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof JTextComponent) {
+				JTextComponent component = (JTextComponent) components[i];
+				if (component.getText().isEmpty()) {
+					component.setBorder(BorderFactory
+							.createLineBorder(Color.RED));
+					validated = false;
+				}
+			}
+		}
+		return validated;
 	}
 
 	@Override
 	public void resetUIValues(JComponent... components) {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < components.length; i++) {
+			components[i]
+					.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			if (components[i] instanceof JTextComponent) {
+				((JTextComponent) components[i]).setText("");
+			}
+		}
 	}
 
 	@Override
 	public void registerPopUpExitListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		close.addActionListener(actionListener);
+		cancel.addActionListener(actionListener);
 	}
 
 	@Override
 	public void unregisterPopUpListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		close.removeActionListener(actionListener);
+		cancel.removeActionListener(actionListener);
 	}
 }

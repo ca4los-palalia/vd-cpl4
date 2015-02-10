@@ -1,16 +1,20 @@
 package com.cplsys.aisa.modules.configuration;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.annotation.PostConstruct;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 import org.springframework.stereotype.Repository;
 
@@ -44,6 +48,10 @@ public class ControlTransformer extends ControlTransformerVariables {
 		secondaryField = new JTextField(5);
 		partNoField = new JTextField(5);
 		mfcField = new JTextField(5);
+		
+		save = new JButton("Save");
+		cancel = new JButton("Cancel");
+		close = new JButton("Close");
 
 	}
 
@@ -55,7 +63,37 @@ public class ControlTransformer extends ControlTransformerVariables {
 
 	@Override
 	public void initListeners() {
-
+		save.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (validateComponents(kwaField, primaryVoltageField, secondaryField, mfcField, partNoField)) {
+					String kwa = kwaField.getText();
+					String prim = primaryVoltageField.getText();
+					String sec = secondaryField.getText();
+					String mfc = mfcField.getText();
+				}
+				
+			}
+		});
+		
+		cancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resetUIValues(kwaField, primaryVoltageField, secondaryField, mfcField, partNoField);
+				unregisterPopUpListener(cancel.getActionListeners()[MAIN_POP_UP_LISTENER]);
+			}
+		});
+		
+		close.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				resetUIValues(kwaField, primaryVoltageField, secondaryField, mfcField, partNoField);
+				unregisterPopUpListener(cancel.getActionListeners()[MAIN_POP_UP_LISTENER]);
+			}
+		});
 	}
 
 	@Override
@@ -134,19 +172,19 @@ public class ControlTransformer extends ControlTransformerVariables {
 		footerConstraints.gridx = 0;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 1, 0, 1);
-		footer.add(new JButton("Save"), footerConstraints);
+		footer.add(save, footerConstraints);
 
 		footerConstraints.fill = GridBagConstraints.HORIZONTAL;
 		footerConstraints.gridx = 1;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 1, 0, 1);
-		footer.add(new JButton("Cancel"), footerConstraints);
+		footer.add(cancel, footerConstraints);
 
 		footerConstraints.fill = GridBagConstraints.HORIZONTAL;
 		footerConstraints.gridx = 2;
 		footerConstraints.gridy = 0;
 		panelConstraints.insets = new Insets(0, 0, 0, 3);
-		footer.add(new JButton("Close"), footerConstraints);
+		footer.add(close, footerConstraints);
 
 		panelConstraints.gridx = 0;
 		panelConstraints.gridy = 6;
@@ -196,8 +234,7 @@ public class ControlTransformer extends ControlTransformerVariables {
 
 	@Override
 	public void salir() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	public static long getSerialversionuid() {
@@ -205,27 +242,39 @@ public class ControlTransformer extends ControlTransformerVariables {
 	}
 
 	@Override
-	public boolean validateComponents(JComponent... component) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validateComponents(JComponent... components) {
+		boolean validated = true;
+		for (int i = 0; i < components.length; i++) {
+			if (components[i] instanceof JTextComponent ) {
+				JTextComponent component = (JTextComponent) components[i]; 
+				if (component.getText().isEmpty()) {
+					component.setBorder(BorderFactory.createLineBorder(Color.RED));
+					validated = false;
+				}
+			}
+		}
+		return validated;
 	}
 
 	@Override
 	public void resetUIValues(JComponent... components) {
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < components.length; i++) {
+			components[i].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			if (components[i] instanceof JTextComponent ) {
+				((JTextComponent) components[i]).setText("");				
+			}
+		}
 	}
 
 	@Override
-	public void registerPopUpExitListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void registerPopUpExitListener(ActionListener actionListener) {	
+		close.addActionListener(actionListener);
+		cancel.addActionListener(actionListener);}
 
 	@Override
 	public void unregisterPopUpListener(ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		
+		close.removeActionListener(actionListener);
+		cancel.removeActionListener(actionListener);
 	}
 
 }
