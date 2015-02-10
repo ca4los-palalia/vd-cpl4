@@ -1,5 +1,6 @@
 package com.cplsys.aisa.modules.variables;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,19 +15,23 @@ public abstract class OverLoadRelayConfigVariables extends JPanel implements
 		DefaultUIStructure {
 
 	private static final long serialVersionUID = 1L;
+	protected static final int MAIN_POP_UP_LISTENER = 0;
+	
 	@Autowired
 	private ServicesLayer servicesLayer;
 	protected JLabel title;
-	protected JLabel kwalabel;
-	protected JLabel primaryVoltageLabel;
-	protected JLabel secondaryLabel;
+	protected JLabel size;
+	protected JLabel rangeA;
 	protected JLabel partNoLabel;
 	protected JLabel mfcLabel;
-	protected JTextField kwaField;
-	protected JTextField primaryVoltageField;
-	protected JTextField secondaryField;
-	protected JTextField partNoField;
+	protected JTextField sizeField;
+	protected JTextField rangeField;
+	protected JTextField partField;
 	protected JTextField mfcField;
+
+	protected JButton save;
+	protected JButton cancel;
+	protected JButton close;
 
 	public void graphicInterfaceBuilder(JComponent component) {
 		this.add(component);

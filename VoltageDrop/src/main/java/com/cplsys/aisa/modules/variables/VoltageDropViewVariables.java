@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.cplsys.aisa.domain.CaidaVoltaje;
 import com.cplsys.aisa.domain.CircuitLenght;
@@ -20,6 +21,7 @@ import com.cplsys.aisa.ui.model.VoltageTableModel;
 import com.cplsys.aisa.ui.render.VoltageTableRender;
 import com.cplsys.aisa.utils.ServicesLayer;
 
+@Repository
 public abstract class VoltageDropViewVariables extends JPanel implements DefaultUIStructure {
 
 	private static final long serialVersionUID = 409925181214214806L;
