@@ -4,15 +4,19 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -158,8 +162,11 @@ public class MainFrame extends MainFrameVariables {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					DefaultUIStructure iFace = getPanelEnEjecucion();
-					if (iFace != null)
+					if (iFace != null) {
 						iFace.nuevo();
+					} else {
+						saveNewFile();
+					}						
 				}
 			});
 			open.addActionListener(new ActionListener() {
@@ -167,8 +174,11 @@ public class MainFrame extends MainFrameVariables {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					DefaultUIStructure iFace = getPanelEnEjecucion();
-					if (iFace != null)
+					if (iFace != null) {
 						iFace.abrir();
+					} else {
+						openFileChooser();
+					}
 				}
 			});
 			save.addActionListener(new ActionListener() {
@@ -176,8 +186,11 @@ public class MainFrame extends MainFrameVariables {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					DefaultUIStructure iFace = getPanelEnEjecucion();
-					if (iFace != null)
-						iFace.guardar();
+					if (iFace != null) {
+						iFace.guardar();	
+					} else {
+						
+					}
 				}
 			});
 			saveAs.addActionListener(new ActionListener() {
@@ -193,8 +206,11 @@ public class MainFrame extends MainFrameVariables {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					DefaultUIStructure iFace = getPanelEnEjecucion();
-					if (iFace != null)
+					if (iFace != null) {
 						iFace.exportar();
+					} else {
+						
+					}
 				}
 			});
 
@@ -203,8 +219,9 @@ public class MainFrame extends MainFrameVariables {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					DefaultUIStructure iFace = getPanelEnEjecucion();
-					if (iFace != null)
+					if (iFace != null) {
 						iFace.print();
+					}
 				}
 			});
 
@@ -213,8 +230,9 @@ public class MainFrame extends MainFrameVariables {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					DefaultUIStructure iFace = getPanelEnEjecucion();
-					if (iFace != null)
+					if (iFace != null) {
 						iFace.salir();
+					}
 				}
 			});
 
@@ -529,5 +547,29 @@ public class MainFrame extends MainFrameVariables {
 	public void unregisterPopUpListener(ActionListener actionListener) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void openFileChooser() {
+		JFileChooser chooser = new JFileChooser();
+		chooser.showOpenDialog(this);
+	}
+	
+	private void saveNewFile() {
+	    String sb = "TEST CONTENT";
+	    FileNameExtensionFilter filter = new FileNameExtensionFilter("Electric Files", "xvd", "xpf", "xla", "xws", "xsc", "xcp", "xmc", "xlsc");
+        
+        
+	    JFileChooser chooser = new JFileChooser();
+	    chooser.addChoosableFileFilter(filter);
+	    chooser.setCurrentDirectory(new File("/home/me/Documents"));
+	    int retrival = chooser.showSaveDialog(null);
+	    if (retrival == JFileChooser.APPROVE_OPTION) {
+	        try {
+	            FileWriter fw = new FileWriter(chooser.getSelectedFile()+".txt");
+	            fw.write(sb.toString());
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
+	    }
 	}
 }
