@@ -134,7 +134,7 @@ public class DefaultValues {
 			modulo = new Modulo();
 			modulo.setModulo(controlPanel);
 			modulo.setProductName("Contactor");
-			modulo.setSerial(-3073823385587179424L);
+			modulo.setSerial(3073823385587179424L);
 			moduloService.save(modulo);
 
 			modulo = new Modulo();
